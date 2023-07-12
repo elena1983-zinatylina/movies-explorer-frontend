@@ -1,19 +1,17 @@
-import MoviesCard from '../MoviesCard/MoviesCard';
-import './MoviesCardList.css';
+import React from "react";
+import "./MoviesCardList.css";
+import MoviesCard from "../MoviesCard/MoviesCard";
 
-const MoviesCardList = ({ isMovies }) => {
-   return (
-      <section className='cards'>
-         <div className='cards__container'>
-            <MoviesCard />
-            <MoviesCard />
-            <MoviesCard />
-         </div>
-         <div className='cards__button-container'>
-            <button className={isMovies ? 'cards__button' : 'cards__button_hidden'} type='button'>Ещё</button>
-         </div>
-      </section>
-   )
+function MoviesCardList(props) {
+  return (
+    <section className="moviescardlist">
+      <ul className="moviescardlist__list">
+        {props.cards.map((card, index) => (
+          <MoviesCard key={index} />
+        ))}
+      </ul>
+    </section>
+  );
 }
 
 export default MoviesCardList;
