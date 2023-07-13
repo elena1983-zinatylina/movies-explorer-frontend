@@ -9,7 +9,7 @@
 }
 
 .promo__container {
-  padding: 50px 70px 403px;
+  padding: 49px 70px 406px;
 }
 
 .promo__img {
@@ -29,7 +29,7 @@
   padding: 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 875px) {
   .promo__container {
     display: flex;
     flex-direction: column;
@@ -43,7 +43,7 @@
     margin-bottom: 140px;
   }
 
-  .promo__logo {
+  .promo__img {
     position: unset;
     width: 680px;
     height: 230px;
@@ -53,7 +53,7 @@
   }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 320px) {
   .promo__container {
     padding: 183px 10px 0;
   }
