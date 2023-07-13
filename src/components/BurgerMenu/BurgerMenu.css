@@ -1,7 +1,6 @@
 .burger {
     z-index: 12;
     transition: 0.3s ease;
-    display: none;
   }
   
   .burger__backdrop {
