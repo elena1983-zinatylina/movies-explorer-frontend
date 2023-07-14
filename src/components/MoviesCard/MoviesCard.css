@@ -25,7 +25,7 @@
   }
   
   .card__content {
-    margin: 14px 12px 10px;
+    margin: 13px 0px 10px;
     padding: 0;
     display: flex;
     flex-direction: row;
@@ -54,23 +54,22 @@
     cursor: pointer;
   }
   
- /* .card__btn__blank {
-    background: url(../../images/save-film.svg) transparent no-repeat center;
+  .card__btn__blank {
+    background: url(../../images/save1d.svg) transparent no-repeat center;
   }
   
   .card__btn_saved {
-    background: url(../../images/save-film_act.svg) transparent no-repeat center;
+    background: url(../../images/save1activ.svg) transparent no-repeat center;
   }
   
- /* .card__btn_delete {
-    background: url(../../images/del.svg) transparent no-repeat center;
-  }*/
+  .card__btn_delete {
+    background: url(../../images/d1.svg) transparent no-repeat center;
+  }
   
   .card__duration {
     margin: 0;
     padding: 0;
-    margin-bottom: 14px;
-    margin-left: 12px;
+    
     text-align: start;
     color: #8b8b8b;
     font-size: 11px;

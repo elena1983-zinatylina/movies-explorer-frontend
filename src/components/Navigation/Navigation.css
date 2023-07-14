@@ -3,6 +3,9 @@
   display: flex;
   justify-content: space-between;
   position: relative;
+  margin: 0 0 0 357px;
+  padding: 4px 72px;
+  align-items: center;
 }
 
 .navigation a {
@@ -21,7 +24,7 @@
 }
 
 .navigation__movies a {
-  color: #000000;
+  color: #FFFFFF;
 }
 
 .navigation__movies_white a {
@@ -79,9 +82,9 @@
 }
 
 @media screen and (max-width: 875px) {
-  .navigation__auth{
+  .navigation__auth {
     margin: 1px 30px 2px 0px;
-  } 
+  }
 }
 
 .navigation__button_account {
@@ -118,6 +121,7 @@
 }
 
 @media screen and (max-width: 768px) {
+
   .navigation__movies,
   .navigation__button_account {
     display: none;

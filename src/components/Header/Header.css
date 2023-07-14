@@ -28,6 +28,10 @@
   
   .header_movie {
     background-color: #202020;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 18px 0;
   }
   
   .header__logo {
