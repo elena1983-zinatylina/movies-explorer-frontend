@@ -1,7 +1,7 @@
+import './Login.css';
 import React from 'react';
 import Logo from "../../images/logo.svg";
 import { Link } from 'react-router-dom';
-import './Login.css';
 
 function Login() {
     return (
@@ -53,7 +53,6 @@ function Login() {
                         Регистрация
                     </Link>
                 </div>
-               
             </form>
         </section>
     );
