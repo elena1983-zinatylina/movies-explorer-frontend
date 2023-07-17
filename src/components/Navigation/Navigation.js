@@ -1,59 +1,63 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from 'react';
 import './Navigation.css';
-import BurgerMenu from '../BurgerMenu/BurgerMenu';
+import { NavLink } from 'react-router-dom';
+import headerIcon from '../../images/landing-logo.svg';
 
-const Navigation = ({ loggedIn }) => {
-  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-  const location = useLocation().pathname;
 
-  const toggleBurgerMenu = () => {
-    setIsBurgerMenuOpen(!isBurgerMenuOpen);
+function Navigation({ loggedIn }) {
+
+  const navigationClass = (`navigation ${loggedIn ? '' : 'navigation_logout'}`);
+
+  const [isNavigationSidebar, setIsNavigationSidebar] = React.useState(false);
+
+  function openNavigationSidebar() {
+    setIsNavigationSidebar(true)
+  }
+
+  function closeNavigationSidebar() {
+    setIsNavigationSidebar(false)
   }
 
   return (
-    <nav className='navigation'>
-      {loggedIn ? (
-        <>
-          <div className={location === '/' ? 'navigation__movies navigation__movies_white' : 'navigation__movies'}>
-            <Link
-              to='/movies'
-              className={location === '/movies' ? 'navigation__movies-link_active' : 'navigation__movies-link'}>
-              Фильмы
-            </Link>
-            <Link
-              to='/saved-movies'
-              className={location === '/saved-movies' ? 'navigation__movies-link_active' : 'navigation__movies-link'}>
-              Сохранённые фильмы
-            </Link>
-          </div>
-          <div>
-            <Link to='/profile'>
-              <button className='navigation__button_account'>
-                Аккаунт
-              </button>
-            </Link>
-          </div>
-        </>
-      ) : (
-        <div className='navigation__auth'>
-          <Link to='/signup' className='navigation__link'>Регистрация</Link>
-          <Link to='/signin'>
-            <button className='navigation__button'>
-              Войти
-            </button>
-          </Link>
+    <nav className={navigationClass}>
+
+      {loggedIn && <div className='navigation-menu'>
+        <NavLink to='/movies' className={({ isActive }) => `navigation-menu__title link ${isActive ? 'navigation-menu__title_active' : ''}`}>Фильмы</NavLink>
+        <NavLink to='/saved-movies' className={({ isActive }) => `navigation-menu__title link ${isActive ? 'navigation-menu__title_active' : ''}`}>Сохранённые фильмы</NavLink>
+        <NavLink to='/profile' className='navigation-account'>
+          <p className='navigation-account__link link'>Аккаунт</p>
+          <img className='navigation-account__icon link' src={headerIcon} alt='Иконка входа в аккаунт'></img>
+        </NavLink>
+      </div>}
+
+      {!loggedIn && <div className='navigation-btns'>
+        <NavLink to='/signup' className='navigation-btns__link'>
+          <button className='navigation-btns__button navigation-btns__button_type_reg button' type='button'>Регистрация</button>
+        </NavLink>
+        <NavLink to='/signin' className='navigation-btns__link'>
+          <button className='navigation-btns__button button' type='button'>Войти</button>    
+        </NavLink>
+      </div>}
+
+      {loggedIn && <button className='navigation-burger button' type='button' onClick={openNavigationSidebar}></button>}
+
+      {loggedIn && <aside className={`navigation-sidebar ${isNavigationSidebar ? 'navigation-sidebar_opened' : ''}`} >
+        <div className='navigation-sidebar__content'>
+          <ul className='navigation-sidebar__menu'>
+            <li className='navigation-sidebar__title'><NavLink to='/' className={({ isActive }) => `navigation-sidebar__link link ${isActive ? 'navigation-sidebar__link_active' : ''}`}>Главная</NavLink></li>
+            <li className='navigation-sidebar__title'><NavLink to='/movies' className={({ isActive }) => `navigation-sidebar__link link ${isActive ? 'navigation-sidebar__link_active' : ''}`}>Фильмы</NavLink></li>
+            <li className='navigation-sidebar__title'><NavLink to='/saved-movies' className={({ isActive }) => `navigation-sidebar__link link ${isActive ? 'navigation-sidebar__link_active' : ''}`}>Сохранённые фильмы</NavLink></li>
+          </ul>
+          <NavLink to='/profile' className='navigation-account navigation-account_sidebar'>
+            <p className='navigation-account__link link'>Аккаунт</p>
+            <img className='navigation-account__icon link' src={headerIcon} alt='Иконка входа в аккаунт'></img>
+          </NavLink>
+          <button className='navigation-btnclose button' type='button' onClick={closeNavigationSidebar}></button>
         </div>
-      )}
-      {!isBurgerMenuOpen && loggedIn ? (
-        <button
-          className={location === '/' ? 'burger__button burger__button_white' :'burger__button'}
-          onClick={toggleBurgerMenu}
-        />
-      ) : <BurgerMenu onClose={toggleBurgerMenu} />
-      }
+      </aside>}
+
     </nav>
-  )
-};
+  );
+}
 
 export default Navigation;
