@@ -1,7 +1,6 @@
 import React from 'react';
 import './Navigation.css';
 import { NavLink } from 'react-router-dom';
-import headerIcon from '../../images/landing-logo.svg';
 
 
 function Navigation({ loggedIn }) {
@@ -26,7 +25,7 @@ function Navigation({ loggedIn }) {
         <NavLink to='/saved-movies' className={({ isActive }) => `navigation-menu__title link ${isActive ? 'navigation-menu__title_active' : ''}`}>Сохранённые фильмы</NavLink>
         <NavLink to='/profile' className='navigation-account'>
           <p className='navigation-account__link link'>Аккаунт</p>
-          <img className='navigation-account__icon link' src={headerIcon} alt='Иконка входа в аккаунт'></img>
+          
         </NavLink>
       </div>}
 
@@ -49,8 +48,8 @@ function Navigation({ loggedIn }) {
             <li className='navigation-sidebar__title'><NavLink to='/saved-movies' className={({ isActive }) => `navigation-sidebar__link link ${isActive ? 'navigation-sidebar__link_active' : ''}`}>Сохранённые фильмы</NavLink></li>
           </ul>
           <NavLink to='/profile' className='navigation-account navigation-account_sidebar'>
-            <p className='navigation-account__link link'>Аккаунт</p>
-            <img className='navigation-account__icon link' src={headerIcon} alt='Иконка входа в аккаунт'></img>
+           <p className='navigation-account__link link'>Аккаунт</p>
+           
           </NavLink>
           <button className='navigation-btnclose button' type='button' onClick={closeNavigationSidebar}></button>
         </div>

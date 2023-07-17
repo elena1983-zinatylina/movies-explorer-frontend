@@ -11,7 +11,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, 270px);
   grid-template-rows: repeat(auto-fit, 218px);
-  row-gap: 33px;
+  row-gap: 34px;
   column-gap: 20px;
   width: calc(100% - 2 * 70px);
   max-width: 1280px;
