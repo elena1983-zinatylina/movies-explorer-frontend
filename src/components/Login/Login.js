@@ -5,7 +5,11 @@ import './Login.css';
 
 function Login() {
     return (
-        <section className='login'>
+        <section className='login'> <Link className="login__link link" to="/">
+        <img className="login__logo"
+            src={Logo}
+            alt='Логотип'></img>
+    </Link>
             <h1 className='login__title'>Рады видеть!</h1>
             <form className="login-form"
                 action="#"
@@ -49,11 +53,7 @@ function Login() {
                         Регистрация
                     </Link>
                 </div>
-                <Link className="login__link link" to="/">
-                    <img className="login__logo"
-                        src={Logo}
-                        alt='Логотип'></img>
-                </Link>
+               
             </form>
         </section>
     );
