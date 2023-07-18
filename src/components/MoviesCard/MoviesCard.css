@@ -77,11 +77,12 @@
     line-height: normal;
   }
   
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 854px) {
     .card__img {
-      width: 339px;
-      height: 190px;
-    }
+      width: 338px;
+      height: 188px;
+
+  }
   }
   
   @media screen and (max-width: 400px) {

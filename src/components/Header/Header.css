@@ -45,7 +45,7 @@
   @media screen and (max-width: 854px) {
     .header {
       padding: 18px 0px;
-      max-width: 100%;
+      max-width: 92%;
     }
   
     .header_movie {
@@ -60,6 +60,6 @@
       width: 90%;
     }
     .header__logo {
-      margin-left: -23px;
+      margin-left: -32px;
     }
   }

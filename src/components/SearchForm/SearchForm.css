@@ -69,8 +69,8 @@
   display: inline-flex;
   align-items: center;
   text-align: center;
-  margin: 0 20px 3px 1px;
-  padding: 0 0 0 0;
+  margin: 0 21px -1px 1px;
+  padding: 0;
 }
 
 .seachform__checkbox+.seachform__label::before {
@@ -95,38 +95,50 @@
   background-image: url("../../images/smalltumb.svg");
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 854px) {
   .seachform {
-    max-width: calc(100% - 2 * 30px);
-    margin: 74px auto 61px;
+    width: 85%;
+    margin: 9px auto 125px;
   }
-
+.seachform__input{
+  margin: -45px;
+    width: 49%;
+}
   .seachform__input-container {
+    padding: 1px 5px 0px 0px;
     margin-bottom: 30px;
   }
 
+  
   .seachform__checkbox-conteiner {
     justify-content: flex-end;
   }
 
   .seachform__checkbox+.seachform__label {
-    flex-direction: row-reverse;
+    flex-direction: row;
   }
 
   .seachform__checkbox+.seachform__label::before {
-    margin-right: 0;
-    margin-left: 16px;
+    margin-right: 18px;
+    margin-left: 0px;
+}
+  
+  .seachform__blackbtn{
+    margin: 0px 17px -1px 13px;
   }
+  
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 360px) {
   .seachform {
-    max-width: calc(100% - 2 * 14px);
-    margin: 81px auto 51px;
+    max-width: 100%;
+    margin: 81px 9px 51px;
+    padding: 0 0 0 0;
   }
 
   .seachform__input-container {
     margin-bottom: 38px;
+    flex-direction: column;
   }
 
   .seachform__input {
@@ -140,9 +152,16 @@
 
   .seachform__checkbox-conteiner {
     justify-content: center;
+  
   }
 
   .seachform__checkbox+.seachform__label {
     font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 750px){
+  .seachform__blackbtn{
+   display: none;
   }
 }
