@@ -94,7 +94,7 @@
   background-image: url("../../images/smalltumb.svg");
 }
 
-@media screen and (max-width: 854px) {
+@media screen and (max-width:1150px) {
   .seachform {
     width: 85%;
     margin: 9px auto 125px;
@@ -128,7 +128,7 @@
   
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 750px) {
   .seachform {
     margin: 81px auto 51px;
     padding: 0;

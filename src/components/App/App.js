@@ -11,7 +11,7 @@ import NotFound from '../NotFound/NotFound';
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn] = useState(true);
 
   const cardsTotal = 16;
   const cardsTotalSave = 4;

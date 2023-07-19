@@ -38,9 +38,9 @@ function Navigation({ loggedIn }) {
         </NavLink>
       </div>}
 
-      { <button className='navigation-burger button' type='button' onClick={openNavigationSidebar}></button>}
+      {loggedIn && <button className='navigation-burger button' type='button' onClick={openNavigationSidebar}></button>}
 
-      { <aside className={`navigation-sidebar ${isNavigationSidebar ? 'navigation-sidebar_opened' : ''}`} >
+      {loggedIn && <aside className={`navigation-sidebar ${isNavigationSidebar ? 'navigation-sidebar_opened' : ''}`} >
         <div className='navigation-sidebar__content'>
           <ul className='navigation-sidebar__menu'>
             <li className='navigation-sidebar__title'><NavLink to='/' className={({ isActive }) => `navigation-sidebar__link link ${isActive ? 'navigation-sidebar__link_active' : ''}`}>Главная</NavLink></li>
