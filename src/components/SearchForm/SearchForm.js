@@ -2,7 +2,6 @@ import React from 'react';
 import './SearchForm.css';
 import Find from "../../images/find.svg";
 import Iconfind from "../../images/iconfind.svg";
-import Label from "../../images/input__COLOR_stroke-2.png";
 
 function SearchForm() {
   return (
