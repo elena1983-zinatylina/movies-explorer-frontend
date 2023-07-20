@@ -18,7 +18,7 @@
     margin: 0;
     padding: 0;
     width: 270px;
-    height: 150px;
+    height: 151px;
     object-fit: cover;
     object-position: center;
   }
@@ -75,12 +75,14 @@
     font-weight: 400;
     line-height: normal;
     border-top: 1px solid #424242;
+    width: 270px;
+    height: 13px;
   }
   
   @media screen and (max-width: 854px) {
     .card__img {
-      width: 338px;
-      height: 188px;
+      width: 339px;
+      height: 190px;
 
   }
   }

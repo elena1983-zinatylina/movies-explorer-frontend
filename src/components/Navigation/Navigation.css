@@ -1,11 +1,14 @@
-.navigation {}
+.navigation {
+}
 
 .navigation_logout {}
 
 .navigation-menu {
   display: flex;
   align-items: center;
-  margin-right: 70px;
+  margin-right: 44px;
+  justify-content: space-between;
+  margin-left: 22.75vw;
 }
 
 .navigation-menu__title {
@@ -18,7 +21,7 @@
 }
 
 .navigation-menu__title:nth-child(2) {
-  margin-right: 334px;
+  
 }
 
 .navigation-menu__title_active {
@@ -26,7 +29,7 @@
 }
 
 .navigation-account {
-  margin-left: 50px;
+  margin-left: 3.91vw;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -40,7 +43,7 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 16px;
-  margin: 0 25px 110px 0;
+  margin: 0 0 0px 23.44vw;
   align-items: center;
   text-align: center;
   width: 100px;
@@ -116,9 +119,12 @@
   display: none;
 }
 
-@media screen and (max-width: 875px) {
+@media screen and (max-width: 1000px) {
   .navigation-btns {
     margin-right: 30px;
+  }
+  .navigation-account {
+    margin-left: 0;
   }
 }
 
@@ -127,6 +133,9 @@
     display: none;
   }
 
+  .navigation-account__link {
+    margin: 44px 0px 0px 18px;
+  }
   .navigation-burger {
     display: block;
   }
@@ -211,7 +220,7 @@
   .navigation-account_sidebar {
     display: flex;
     padding: 0;
-    padding-bottom: 92px;
+    padding-bottom: 811px;
     margin: 0;
     align-items: center;
     justify-content: center;
@@ -247,9 +256,10 @@
   }
 
   .navigation-burger {
-    margin-right: 0px;
-    width: 40px;
+    margin-right: 14px;
+    width: 39px;
     height: 43px;
+
   }
 
   .navigation-sidebar__content {

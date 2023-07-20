@@ -22,7 +22,7 @@ function Navigation({ loggedIn }) {
 
       {loggedIn && <div className='navigation-menu'>
         <NavLink to='/movies' className={({ isActive }) => `navigation-menu__title link ${isActive ? 'navigation-menu__title_active' : ''}`}>Фильмы</NavLink>
-        <NavLink to='/saved-movies' className={({ isActive }) => `navigation-menu__title link ${isActive ? 'navigation-menu__title_active' : ''}`}>Сохранённые фильмы</NavLink>
+        <NavLink to='/saved-movies' className={({ isActive }) => `navigation-menu__title link ${isActive ? 'navigation-menu__title_active' : ''}`}>Сохранённые&nbsp;фильмы</NavLink>
         <NavLink to='/profile' className='navigation-account'>
           <p className='navigation-account__link link'>Аккаунт</p>
           
