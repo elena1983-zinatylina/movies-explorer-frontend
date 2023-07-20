@@ -1,6 +1,7 @@
 .footer {
-  margin: 0 70px;
- 
+  margin: 0 auto;
+ max-width: 1280px;
+  width: 100%;
 }
 
 .footer__text {
@@ -13,11 +14,11 @@
   border-bottom: 1px solid #424242;
   padding-bottom: 20px;
   max-width: 1140px;
-  width: 100%;
+  width: 95%;
 }
 
 .footer__navigation {
-  width: 100%;
+  width: 95%;
   max-width: 1140px;
   display: flex;
   justify-content: space-between;
@@ -61,7 +62,12 @@
 
 @media screen and (max-width: 875px) {
   .footer {
-    margin: 0 30px;
+    margin: 0 auto;
+    max-width: 768px;
+  }
+  .footer__navigation {
+    max-width: 768px;
+    width: 95%;
   }
 }
 
