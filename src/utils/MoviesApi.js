@@ -14,3 +14,4 @@ class MoviesApi {
 const moviesApi = new MoviesApi(MOVIE_URL);
 
 export default moviesApi;
+ 
