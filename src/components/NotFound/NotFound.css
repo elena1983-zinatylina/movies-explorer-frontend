@@ -1,59 +1,78 @@
-.notfound {
-    width: 100%;
-    display: flex;
-    padding: 0;
-    margin: 0 auto;
-    flex-direction: column;
-    align-items: center;
-    color: #fff;
+.not-found {
+  display: flex;
+  justify-content: center;
+}
+
+.not-found__container {
+  max-width: 1280px;
+  padding: 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.not-found__title {
+  padding: 0;
+  color: #FFF;
+  text-align: center;
+  font-family: 'Inter', -apple-system, 'Segoe UI', 'Roboto', 'Ubuntu', sans-serif;
+  font-size: 140px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 100px 0 5px;
+}
+
+@media screen and (max-width: 520px) {
+  .not-found__title {
+    font-size: 80px;
   }
-  
-  .notfound__title {
-    margin: 245px auto 4px;
-    font-size: 140px;
-    font-weight: 400;
-    line-height: normal;
+}
+
+.not-found__subtitle {
+  padding: 0;
+  margin: 0 0 184px;
+  color: #FFF;
+  text-align: center;
+  font-family: 'Inter', -apple-system, 'Segoe UI', 'Roboto', 'Ubuntu', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@media screen and (max-width: 520px) {
+  .not-found__subtitle {
+    font-size: 12px;
   }
-  
-  .notfound__subtitle {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: normal;
-    margin: 0;
+}
+
+.not-found__back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #4285F4;
+  text-align: center;
+  font-family: 'Inter', -apple-system, 'Segoe UI', 'Roboto', 'Ubuntu', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  transition: opacity .2s linear;
+}
+
+.not-found__back-button:hover {
+  opacity: .7;
+}
+
+@media screen and (max-width: 520px) {
+  .not-found__back-button {
+    font-size: 12px;
   }
-  
-  .notfound__button {
-    color: #4285f4;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: normal;
-    padding: 0;
-    margin: 184px auto 60px;
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-  }
-  
-  @media screen and (max-width: 800px) {
-    .notfound__title {
-      margin-top: 407px;
-    }
-    .notfound__button {
-      margin: 184px auto 222px;
-    }
-  }
-  
-  @media screen and (max-width: 400px) {
-    .notfound__title {
-      margin: 329px auto 10px;
-      font-size: 80px;
-    }
-    .notfound__subtitle {
-      font-size: 12px;
-    }
-    .notfound__button {
-      margin: 284px auto 30px;
-      font-size: 12px;
-    }
-  }
+}
