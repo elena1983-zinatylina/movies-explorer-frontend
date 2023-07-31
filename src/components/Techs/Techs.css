@@ -1,0 +1,139 @@
+.techs {
+    color: #fff;
+    background-color: #272727;
+    display: flex;
+    flex-direction: column;
+    padding: 0 70px;
+  }
+  
+  .techs__title {
+    margin: 103px 0 90px;
+  }
+  
+  .techs__content {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .techs__subtitle {
+    margin: 0;
+    max-width: 600px;
+    margin-bottom: 26px;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: -2px;
+  }
+  
+  .techs__text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: -0.56px;
+    margin: 0;
+    max-width: 459px;
+  }
+  
+  .techs__list {
+    list-style: none;
+    margin: 100px auto;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .techs__list-item {
+    border-radius: 10px;
+    background: #303030;
+    width: 90px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+  
+  .techs__list-item:last-of-type {
+    margin-right: 0;
+  }
+  
+  .techs__list-text {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.56px;
+  }
+  
+  @media screen and (max-width: 875px) {
+    .techs {
+      padding: 0 50px;
+    }
+    .techs__title {
+      margin-top: 90px;
+      margin-bottom: 80px;
+    }
+    .techs__subtitle {
+      margin-bottom: 22px;
+    }
+    .techs__text {
+      font-size: 12px;
+      line-height: 18px;
+    }
+    .techs__list {
+      margin-top: 83px;
+      margin-bottom: 90px;
+    }
+    .techs__list-item {
+      width: 84px;
+      height: 57px;
+    }
+    .techs__list-text {
+      font-size: 12px;
+      letter-spacing: -0.48px;
+    }
+  }
+  
+  @media screen and (max-width: 765px) {
+    .techs__list {
+      width: 90%;
+      flex-wrap: wrap;
+      row-gap: 10px;
+      column-gap: 10px;
+    }
+    .techs__list-item {
+      margin-right: 0;
+    }
+  }
+  
+  @media screen and (max-width: 565px) {
+    .techs {
+      padding: 0 18px;
+    }
+    .techs__title {
+      margin-top: 70px;
+      margin-bottom: 50px;
+      border-bottom: 1px solid #000000;
+    }
+    .techs__subtitle {
+      margin-bottom: 13px;
+      font-size: 30px;
+      letter-spacing: -1.2px;
+    }
+    .techs__text {
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: -0.44px;
+      max-width: 292px;
+    }
+    .techs__list {
+      margin-top: 50px;
+      margin-bottom: 70px;
+      width: calc(320px - 2 * 71px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
