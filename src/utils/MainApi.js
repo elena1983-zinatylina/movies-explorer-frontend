@@ -1,96 +1,76 @@
-import { checkResponse, BASE_URL } from './Constants';
-
-const headers = {
-   Accept: 'application/json',
-   'Content-Type': 'application/json',
-};
-
-// Авторизация пользователя
-export const authorize = ({ email, password }) => {
-   return fetch(`${BASE_URL}/signin`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({ email, password }),
-   }).then((res) => checkResponse(res))
-}
-
-// Регистрация пользователя
-export const register = ({ name, email, password }) => {
-   return fetch(`${BASE_URL}/signup`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({ name, email, password }),
-   }).then((res) => checkResponse(res))
-}
-
-// Получаем информацию о пользователе
-export const getUserInfo = (jwt) => {
-   return fetch(`${BASE_URL}/users/me`, {
-      method: 'GET',
-      headers: {
-         ...headers,
-         'Authorization': `Bearer ${jwt}`,
-      },
-   }).then((res) => checkResponse(res));
-};
-
-// Обновляем информацию о пользователе
-export const updateUserInfo = (data, jwt) => {
-   return fetch(`${BASE_URL}/users/me`, {
-      method: 'PATCH',
-      headers: {
-         ...headers,
-         'Authorization': `Bearer ${jwt}`,
-      },
-      body: JSON.stringify({
-         name: data.name,
-         email: data.email,
-      }),
-   }).then((res) => checkResponse(res))
-};
-
-// Сохраняем фильм пользователя
-export const saveMovie = (movie, jwt) => {
-   return fetch(`${BASE_URL}/movies`, {
-      method: 'POST',
-      headers: {
-         ...headers,
-         'Authorization': `Bearer ${jwt}`,
-      },
-      body: JSON.stringify({
-         movieId: movie.id,
-         nameRU: movie.nameRU || 'Ничего не найдено',
-         nameEN: movie.nameEN || 'Ничего не найдено',
-         country: movie.country,
-         director: movie.director,
-         duration: movie.duration,
-         year: movie.year,
-         description: movie.description,
-         image: `https://api.nomoreparties.co${movie.image.url}`,
-         trailerLink: movie.trailerLink,
-         thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
-      }),
-   }).then((res) => checkResponse(res))
-};
-
-// Получаем все сохраненные фильмы пользователя
-export const getSavedMovies = (jwt) => {
-   return fetch(`${BASE_URL}/movies`, {
-      method: 'GET',
-      headers: {
-         ...headers,
-         'Authorization': `Bearer ${jwt}`,
+class MainApi {
+    constructor({ url, headers }) {
+      this._url = url;
+      this._headers = headers;
+    }
+  
+    /**Обработать ответ*/
+    _handleReply(res) {
+      if (res.ok) {
+        return res.json();
       }
-   }).then((res) => checkResponse(res))
-};
-
-// Удаляем фильм пользователя
-export const deleteMovie = (id, jwt) => {
-   return fetch(`${BASE_URL}/movies/${id}`, {
-      method: 'DELETE',
-      headers: {
-         ...headers,
-         'Authorization': `Bearer ${jwt}`,
-      },
-   }).then((res) => checkResponse(res))
-};
+      return Promise.reject(`Ошибка: ${res.status}`);
+    }
+  
+    /**Установить токен*/
+    setToken(token) {
+      this._headers.Authorization = `Bearer ${token}`;
+    }
+  
+    /**Загрузить данные пользователя с сервера*/
+    getUserInfo() {
+      return fetch(`${this._url}/users/me`, { headers: this._headers })
+        .then(this._handleReply)
+    }
+  
+    /**Редактировать профиль*/
+    updateUserInfo({ name, email }) {
+      return fetch(`${this._url}/users/me`,
+        {
+          method: 'PATCH',
+          headers: this._headers,
+          body: JSON.stringify({ name, email })
+        })
+        .then(this._handleReply)
+    }
+  
+    /**Получить все карточки*/
+    getAllCards() {
+      return fetch(`${this._url}/movies`, {
+        headers: this._headers
+      })
+        .then(this._handleResponce)
+    }
+  
+    /**Удалить карточку*/
+    deleteMovie(id) {
+      return fetch(`${this._url}/movies/${id}`,
+        {
+          method: 'DELETE',
+          headers: this._headers,
+        })
+        .then(this._handleResponce)
+    }
+  
+    /**Сохранить карточку*/
+    savedMovie(card) {
+      return fetch(`${this._url}/movies`,
+        {
+          method: 'POST',
+          headers: this._headers,
+          body: JSON.stringify(card)
+        })
+        .then(this._handleResponce)
+    }
+  }
+  
+  const mainApi = new MainApi({
+    url: 'http://localhost:3000',
+    //url: 'https://api.diplom.zee.nomoreparties.sbs',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: '',
+    },
+  });
+  
+  export default mainApi;

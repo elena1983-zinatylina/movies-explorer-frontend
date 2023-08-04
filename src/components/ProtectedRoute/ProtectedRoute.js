@@ -1,4 +1,4 @@
-import { Route, Navigate } from 'react-router-dom';
+/*import { Route, Navigate } from 'react-router-dom';
 
 function ProtectedRoute({ component: Component, ...props }) {
    return (
@@ -12,4 +12,4 @@ function ProtectedRoute({ component: Component, ...props }) {
 
 export default ProtectedRoute;
 
-// ProtectedRoute — компонент для защиты маршрутов, у которых нет надлежащей аутентификации.
+// ProtectedRoute — компонент для защиты маршрутов, у которых нет надлежащей аутентификации.*/
