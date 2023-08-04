@@ -117,6 +117,20 @@
     padding: 14px 177px;
     cursor: pointer;
   }
+
+  .login-form__error {
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    display: block;
+    max-height: 30px;
+    max-width: 396px;
+    color: #ee3465;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: normal;
+    align-self: flex-start;
+  }
   
   .login-form__button:hover {
     opacity: 0.7;

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Profile.css';
 import Header from '../Header/Header';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Profile(props) {
   const { loggedIn, onUpdateUser, logOut, profileMessage } = props;
@@ -80,7 +80,7 @@ function Profile(props) {
     <>
       <Header loggedIn={loggedIn} />
       <section className='profile'>
-        <h1 className='profile__greetings'>Привет, {name}!</h1>
+      <h1 className='profile__greetings'>Привет, {name}!</h1>
         <form className='profile__form'onSubmit={handleSubmit}>
           <fieldset className='profile__user'>
             <div className='profile__data'>
@@ -94,7 +94,6 @@ function Profile(props) {
                 required
                 minLength='2'
                 maxLength='30'
-                defaultValue='Виталий'
                 disabled={initChange ? false : true}
                 value={name}
                 onChange={handleChangeName}

@@ -1,15 +1,13 @@
-import { Route, Navigate } from 'react-router-dom';
+import React from 'react';
+import { Navigate } from "react-router-dom";
 
-function ProtectedRoute({ component: Component, ...props }) {
-   return (
-      <Route>
-         {() =>
-            props.loggedIn ? <Component {...props} /> : <Navigate to='/' />
-         }
-      </Route>
-   );
-};
+const ProtectedRoute = ({ element: Component, ...props }) => {
 
-export default ProtectedRoute;
+    return (
+        props.loggedIn ? <Component {...props} /> : <Navigate to="/signup" replace />
+    )
+}
+
+export default ProtectedRoute; 
 
 // ProtectedRoute — компонент для защиты маршрутов, у которых нет надлежащей аутентификации.*/
