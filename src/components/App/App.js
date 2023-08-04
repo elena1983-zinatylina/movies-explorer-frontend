@@ -148,9 +148,12 @@ function App() {
                 profileMessage={profileMessage}
               />
             } />
-        <Route path="/signin"   element={<Login onLogin={handleLogin} loginError={loginError} />}
+        <Route path="/signin"   
+        element={<Login onLogin={handleLogin} 
+        loginError={loginError} />}
           />
-        <Route path="/signup"  element={
+        <Route path="/signup"  
+        element={
               <Register
                 onRegister={handleRegister}
                 registerError={registerError}

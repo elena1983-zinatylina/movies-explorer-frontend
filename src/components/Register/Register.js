@@ -154,13 +154,12 @@ function Register({ onRegister, registerError }) {
                   value={password}
                   onChange={handleChangePassword}
                   />
-                  <span className='authorization-form__error authorization-form__error_server'>
-          {registerError}
-        </span>
+                   <span className='authorization-form__error'>{passwordError}</span>
               </div>
           </fieldset>
-          <span className='authorization-form__error'>Что-то пошло не так...
-          </span>
+          <span className='authorization-form__error authorization-form__error_server'>
+          {registerError}
+        </span>
           <button   className={`authorization-form__button button ${
             !formValid ? 'authorization-form__button_disabled' : ''
           }`}
