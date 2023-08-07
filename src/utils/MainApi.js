@@ -65,8 +65,7 @@ class MainApi {
   }
   
   const mainApi = new MainApi({
-    url: 'http://localhost:3000',
-    //url: 'https://api.diplom.zee.nomoreparties.sbs',
+    url: 'https://api.diplom.zee.nomoreparties.sbs',
     headers: {
       'content-type': 'application/json',
       Authorization: '',
