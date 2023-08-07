@@ -112,7 +112,7 @@ function Register({ onRegister, registerError }) {
       action='#' 
       name='authorization-form' 
       onSubmit={handleSubmit}
-      noValidate>
+      >
           <fieldset className='authorization-form__fieldset'>
               <div className='authorization-form__input-container'>
                   <label className='authorization-form__label' 
@@ -149,7 +149,8 @@ function Register({ onRegister, registerError }) {
                   className='authorization-form__input' 
                   placeholder='Введите пароль' 
                   name='password' 
-                  required minLength='8' 
+                  required 
+                  minLength='8' 
                   maxLength='30' 
                   value={password}
                   onChange={handleChangePassword}

@@ -21,8 +21,8 @@ function Navigation({ loggedIn }) {
     <nav className={navigationClass}>
 
       {loggedIn && <div className='navigation-menu'>
-        <NavLink to='/movies' className={({ isActive }) => `navigation-menu__title link ${isActive ? 'navigation-menu__title_active' : ''}`}>Фильмы</NavLink>
-        <NavLink to='/saved-movies' className={({ isActive }) => `navigation-menu__title link ${isActive ? 'navigation-menu__title_active' : ''}`}>Сохранённые фильмы</NavLink>
+      <NavLink to='/movies' className='navigation-menu__title navigation-menu__title_active link'>Фильмы</NavLink>
+        <NavLink to='/saved-movies' className='navigation-menu__title link'>Сохранённые фильмы</NavLink>
         <NavLink to='/profile' className='navigation-account'>
           <p className='navigation-account__link link'>Аккаунт</p>
           
@@ -38,9 +38,9 @@ function Navigation({ loggedIn }) {
         </NavLink>
       </div>}
 
-      { <button className='navigation-burger button' type='button' onClick={openNavigationSidebar}></button>}
+      {loggedIn && <button className='navigation-burger button' type='button' onClick={openNavigationSidebar}></button>}
 
-      { <aside className={`navigation-sidebar ${isNavigationSidebar ? 'navigation-sidebar_opened' : ''}`} >
+      {loggedIn && <aside className={`navigation-sidebar ${isNavigationSidebar ? 'navigation-sidebar_opened' : ''}`} >
         <div className='navigation-sidebar__content'>
           <ul className='navigation-sidebar__menu'>
             <li className='navigation-sidebar__title'><NavLink to='/' className={({ isActive }) => `navigation-sidebar__link link ${isActive ? 'navigation-sidebar__link_active' : ''}`}>Главная</NavLink></li>
