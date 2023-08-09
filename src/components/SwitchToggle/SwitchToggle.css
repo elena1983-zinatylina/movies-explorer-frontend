@@ -1,0 +1,60 @@
+.switch-toggle {
+    display: flex;
+    align-items: center;
+  }
+  
+  .switch-toggle__label {
+    background-color: #3ddc84;
+    border-radius: 32px;
+    display: inline-block;
+    position: relative;
+    width: 36px;
+    height: 20px;
+    margin-right: 14px;
+  }
+  
+  .switch-toggle__input {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  
+  .switch-toggle__slider {
+    background-color: #3ddc84;
+    border-radius: 32px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    transition: 0.4s;
+  }
+  
+  .switch-toggle__slider::before {
+    content: "";
+    background-color: #fff;
+    border-radius: 32px;
+    position: absolute;
+    cursor: pointer;
+    top: 6px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    transition: 0.4s;
+  }
+  
+  .switch-toggle__input:checked + .switch-toggle__slider::before {
+    transform: translate(20px);
+  }
+  
+  .switch-toggle__name {
+    font-size: 13px;
+    font-weight: 400;
+  }
+  
+  @media screen and (max-width: 630px) {
+    .switch-toggle {
+      display: none;
+    }
+  }

@@ -1,4 +1,4 @@
-.movies {
+/*.movies {
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -36,4 +36,4 @@
     .movies__add-cards {
       width: 240px;
     }
-  }
+  }*/

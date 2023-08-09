@@ -1,78 +1,39 @@
 .not-found {
   display: flex;
-  justify-content: center;
-}
-
-.not-found__container {
-  max-width: 1280px;
-  padding: 30px;
-  box-sizing: border-box;
-  display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 .not-found__title {
-  padding: 0;
-  color: #FFF;
-  text-align: center;
-  font-family: 'Inter', -apple-system, 'Segoe UI', 'Roboto', 'Ubuntu', sans-serif;
   font-size: 140px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
-  margin: 100px 0 5px;
+  margin-bottom: 5px;
 }
 
-@media screen and (max-width: 520px) {
+.not-found__text {
+  font-size: 16px;
+  margin-bottom: 184px;
+}
+
+.not-found__link {
+  color: #4285f4;
+}
+
+@media screen and (max-width: 480px) {
+  .not-found {
+    padding: 329px 0 30px 0;
+    height: 100%;
+  }
+
   .not-found__title {
     font-size: 80px;
+    margin-bottom: 10px;
   }
-}
 
-.not-found__subtitle {
-  padding: 0;
-  margin: 0 0 184px;
-  color: #FFF;
-  text-align: center;
-  font-family: 'Inter', -apple-system, 'Segoe UI', 'Roboto', 'Ubuntu', sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-@media screen and (max-width: 520px) {
-  .not-found__subtitle {
+  .not-found__text {
     font-size: 12px;
-  }
-}
-
-.not-found__back-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: transparent;
-  color: #4285F4;
-  text-align: center;
-  font-family: 'Inter', -apple-system, 'Segoe UI', 'Roboto', 'Ubuntu', sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  cursor: pointer;
-  transition: opacity .2s linear;
-}
-
-.not-found__back-button:hover {
-  opacity: .7;
-}
-
-@media screen and (max-width: 520px) {
-  .not-found__back-button {
-    font-size: 12px;
+    margin-bottom: 284px;
   }
 }

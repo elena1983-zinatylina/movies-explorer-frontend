@@ -1,14 +1,3 @@
 .main {
-    max-width: 1280px;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    background-color: #202020;
-  }
-  
-  @media screen and (max-width: 875px) {
-    .main {
-      max-width: 768px;
-      width: 100%;
-    }
-  }
+  flex-grow: 1;
+}

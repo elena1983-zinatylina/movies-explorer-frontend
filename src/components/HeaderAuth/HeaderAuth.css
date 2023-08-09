@@ -1,0 +1,25 @@
+.header__links {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+  }
+  
+  .header__link {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  
+  .header__link_button {
+    color: #000;
+    background-color: #3ddc84;
+    border-radius: 3px;
+    padding: 8px 20px;
+  }
+  
+  @media screen and (max-width: 480px) {
+    .header__links {
+      gap: 14px;
+    }
+  }

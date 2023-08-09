@@ -1,0 +1,25 @@
+.profile-link {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-link__box {
+    background-color: #313131;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin-left: 13px;
+  }
+  
+  .header__menu-profile {
+    margin-top: auto;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .header__movie-links + .profile-link {
+      display: none;
+    }
+  }

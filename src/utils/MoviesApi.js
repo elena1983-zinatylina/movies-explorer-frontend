@@ -1,32 +1,24 @@
+const MOVIES_URL = "https://api.nomoreparties.co/beatfilm-movies";
+
 class MoviesApi {
-    constructor({ url, headers }) {
-      this._url = url;
-      this._headers = headers;
-    }
-  
-  /**Обработать ответ*/
-    _handleResponce(res) {
+  constructor(URL) {
+    this._URL = URL;
+  }
+
+  _getJson(res) {
+    {
       if (res.ok) {
         return res.json();
       }
-      return Promise.reject(res.status);
-    }
-  
-    /**Загрузить фильмы с сервера*/
-    getAllMovies() {
-      return fetch(`${this._url}`,{ 
-        headers: this._headers 
-      })
-        .then(this._handleResponce)
+      return Promise.reject(`Ошибка: ${res.status} что то идет не по плану`);
     }
   }
-  
-  const moviesApi = new MoviesApi({
-    url: "https://api.nomoreparties.co/beatfilm-movies",
-    headers: {
-      "content-type": "application/json",
-      "Authorization": "",
-    }
-  })
-  
-  export default moviesApi
+
+  getMovies() {
+    const promise = fetch(this._URL);
+    return promise.then(this._getJson);
+  }
+}
+
+const moviesApi = new MoviesApi(MOVIES_URL);
+export default moviesApi;

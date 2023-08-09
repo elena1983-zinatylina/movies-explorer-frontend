@@ -1,101 +1,94 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import './SearchForm.css';
-import Find from "../../images/find.svg";
-import Iconfind from "../../images/iconfind.svg";
+import arrow from "../../images/iconfind.svg";
+import  SwitchToggle  from "../SwitchToggle/SwitchToggle";
+import  SwitchToggleMobile  from "../SwitchToggle/SwitchToggleMobile/SwitchToggleMobile";
 
-function SearchForm(props) {
-  const { filterCards, page } = props;
+export default function SearchForm  ({
+  handleSearchMovies,
+  inputSearchForm,
+  setInputSearchForm,
+  checkboxValue,
+  setCheckboxValue,
+  filterSavedMovies,
+})  {
+  const [inputText, seInputText] = useState("");
+  const [checkboxShortMovies, setCheckboxShortMovies] = useState(false);
+  const isSavedMoviesPage = window.location.pathname === "/saved-movies";
 
-  // Переменная состояния кнопки поиска - активна/ не активна
-  const [isDisabledButton, setIsDisabledButton] = useState(true);
-  // Переменная состояния ошибки
-  const [error, setError] = useState({ name: "", isShortsMovie: "" });
-  // Переменная состония поля input поиска
-  const [value, setValue] = useState({ name: "", isShortsMovie: false });
-
-  const formRef = useRef(null);
-
-  // Эффект отслеживания состояния поля input поиска
-  useEffect(() => {
-    const searchMovies = JSON.parse(localStorage.getItem("search-movies"));
-    if (searchMovies) {
-      setValue(searchMovies);
-      filterCards(searchMovies);
-    }
-    if (page === "saved-movies") {
-      filterCards({ name: "", isShortsMovie: false });
-      setValue({ name: "", isShortsMovie: false });
-    }
-  }, []);
-
-  // Функция изменения input поиска
-  const handleChange = (e) => {
-    const { name, value: inputValue, validationMessage } = e.target;
-
-    const updatedValue = { ...value, [name]: inputValue };
-    if (page === "movies") {
-      localStorage.setItem("search-movies", JSON.stringify(updatedValue));
-    }
-    setValue(updatedValue);
-    setError((state) => ({ ...state, [name]: validationMessage }));
-    setIsDisabledButton(!formRef.current.checkValidity());
-  };
-
-  // Функция отработки чекбокса
-  const handleCheckbox = (e) => {
-    const { name, checked } = e.target;
-    const updatedValue = { ...value, [name]: checked };
-
-    if (page === "movies") {
-      localStorage.setItem("search-movies", JSON.stringify(updatedValue));
-    }
-    setValue(updatedValue);
-    filterCards(updatedValue);
-  };
-
-  // Функция отправки формы
+  // сабмит формы поиска
   const handleSubmit = (e) => {
     e.preventDefault();
-    filterCards(value);
+    if (isSavedMoviesPage) {
+      console.log("saved page");
+      filterSavedMovies(inputText.toLowerCase(), checkboxShortMovies);
+    } else {
+      handleSearchMovies(inputSearchForm, checkboxValue);
+    }
+  };
+
+  //контролируемый инпут
+  const handleInputChange = (e) => {
+    if (isSavedMoviesPage) {
+      seInputText(e.target.value);
+    } else {
+      setInputSearchForm(e.target.value);
+    }
+  };
+
+  // переключатель состояния checkbox
+  const handleCheckbox = (e) => {
+    if (isSavedMoviesPage) {
+      filterSavedMovies(inputText, e.target.checked);
+      setCheckboxShortMovies(e.target.checked);
+    } else {
+      setCheckboxValue(e.target.checked);
+      handleSearchMovies(inputSearchForm, e.target.checked);
+    }
   };
   return (
-    <section className='seachform'
-      onSubmit={handleSubmit}
-      ref={formRef}
-      noValidate
-      >
-      <form className='seachform__input-container'>
-      <img className="seachform__blackbtn button"
-                        src={Iconfind}
-                        alt='знак поиск темный'
-                        type="submit"
-                        onClick={handleSubmit}>
-                        </img>
-        <input className="seachform__input"
-          placeholder="Фильм"
-          required
-          onChange={handleChange}
-          value={value.name}
-          name="name"
-        ></input>
-        <img className="seachform__btn button"
-                        src={Find}
-                        alt='знак поиск' 
-                        type="submit"
-                        onClick={handleSubmit}>
-                        </img>
-                        <span className="searchform__span"> {error.name}</span>
-     <div className='seachform__checkbox-conteiner'>
-        <input type='checkbox' className='seachform__checkbox' 
-        id='seachform__checkbox' value='yes' onChange={handleCheckbox}
-        checked={value.isShortsMovie}
-      ></input>
-        <label className='seachform__label link' 
-        htmlFor='seachform__checkbox'>Короткометражки</label>
-      </div> 
-      </form>
-    </section>
-  );
-}
+    <div className="search">
+      <div className="container container_movies-mobile">
+        <div className="search__wrapper">
+          <form className="search__form" action="#" onSubmit={handleSubmit}>
+            <div className="search__inner">
+              <input
+                className="search__input"
+                type="text"
+                name="search"
+                placeholder="Поиск"
+                minLength={2}
+                maxLength={90}
+                value={inputSearchForm}
+                onChange={handleInputChange}
+                required
+              />
+              <button
+                className="search__button hover-link"
+                aria-label="Поиск фильма"
+                type="submit"
+              >
+                <img className="search__arrow" src={arrow} alt="Стрелка" />
+              </button>
+              <SwitchToggle
+                name={"Короткометражки"}
+                position={"search__toggle"}
+                handleCheckbox={handleCheckbox}
+                checkboxValue={checkboxValue}
+              />
+            </div>
+            <SwitchToggleMobile
+              name={"Короткометражки"}
+              handleCheckbox={handleCheckbox}
+              checkboxValue={checkboxValue}
+            />
 
-export default SearchForm;
+            {!inputSearchForm && !inputText && (
+              <p className="search__error">Нужно ввести ключевое слово</p>
+            )}
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};

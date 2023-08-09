@@ -1,54 +1,20 @@
 .footer {
-  margin: 0 auto;
- max-width: 1280px;
-  width: 100%;
-}
-
-.footer__text {
-  margin: 79px auto 0;
-  color: #8b8b8b;
-  text-align: center;
   font-size: 13px;
-  font-weight: 400;
-  line-height: normal;
-  border-bottom: 1px solid #424242;
-  padding-bottom: 20px;
-  max-width: 1140px;
-  width: 95%;
 }
 
-.footer__navigation {
-  width: 95%;
-  max-width: 1140px;
+.footer__name {
+  padding: 79px 0 20px;
+  color: #8b8b8b;
+
+  text-align: center;
+  border-bottom: 1px solid #424242;
+}
+
+.footer__bot {
   display: flex;
   justify-content: space-between;
-  margin: 20px auto;
   align-items: center;
-}
-
-.footer__copyright {
-  margin: 0;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.footer__links {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-}
-
-.footer__links-item {
-  padding: 0;
-  margin: 0;
-  margin-right: 20px;
-}
-
-.footer__links-item:last-of-type {
-  margin-right: 0;
+  padding: 20px 0;
 }
 
 .footer__link {
@@ -60,50 +26,36 @@
   text-decoration: none;
 }
 
-@media screen and (max-width: 875px) {
-  .footer {
-    margin: 0 auto;
-    max-width: 768px;
-  }
-  .footer__navigation {
-    max-width: 768px;
-    width: 95%;
-  }
+.footer__link:not(:last-child) {
+  margin-right: 20px;
 }
 
-@media screen and (max-width: 565px) {
+
+@media screen and (max-width: 480px) {
   .footer {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-  }
-  .footer__text {
-    padding-bottom: 21px;
-    font-size: 12px;
-  }
-  .footer__navigation {
-    flex-direction: column-reverse;
-    max-width: 111px;
-    margin-top: 31px;
-  }
-  .footer__copyright {
-    font-size: 12px;
-    color: #8b8b8b;
-  }
-  .footer__links {
-    flex-direction: column;
-    align-items: center;
-    font-size: 12px;
-  }
-  .footer__links-item {
-    margin-right: 0;
-    margin-bottom: 12px;
-  }
-  .footer__links-item:last-of-type {
-    margin-bottom: 30px;
-  }
-  .footer__link {
     font-size: 12px;
   }
 
+  .footer__bot {
+    padding-top: 30px;
+    flex-direction: column-reverse;
+  }
+
+  .footer__year {
+    color: #8b8b8b;
+  }
+
+  .footer__links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    list-style: none;
+  }
+
+  .footer__link:not(:last-child) {
+    margin: 0 0 12px 0;
+  }
+
+  
 }

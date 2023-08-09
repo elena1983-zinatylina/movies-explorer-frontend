@@ -1,136 +1,204 @@
-.aboutme {
-    color: #fff;
-    margin: 0 70px;
-  }
-  
-  .aboutme__title {
-    margin: 0;
-    margin-top: 110px;
-    margin-bottom: 65px;
-  }
-  
-  .aboutme__profile {
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-    margin-bottom: 100px;
-  }
-  
-  .aboutme__discription {
-    max-width: 600px;
-    margin-right: 270px;
-  }
-  
-  .aboutme__name {
-    margin: 0;
-    font-size: 50px;
-    font-weight: 400;
-    line-height: 58px;
-    letter-spacing: -2px;
-  }
-  
-  .aboutme__job {
-    margin: 18px 0 26px;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 20px;
-  }
-  
-  .aboutme__text {
-    margin: 0;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 22px;
-    margin-bottom: 76px;
-  }
-  
-  .aboutme__link {
-    text-decoration: none;
+.about-student {
+  padding: 110px 0;
+}
+
+.about-student__title {
+  margin-bottom: 66px;
+}
+
+.about-student__wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 101px;
+}
+
+.about-student__box {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.about-student__name {
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.about-student__profession {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 26px;
+}
+
+.about-student__description {
+  flex-grow: 1;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+
+.about-student__link {
+  font-weight: 500;
+}
+
+.about-student__image {
+  width: 270px;
+  height: 327px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.about-student__portfolio {
+  color: #8b8b8b;
+  display: block;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 50px;
+}
+.about-student__items{
+  padding: 0;
+}
+.about-student__item{
+  list-style-type: none;
+}
+.about-student__item-link {
+  text-decoration: none;
     color: #fff;
     font-size: 14px;
     font-weight: 500;
     line-height: normal;
+}
+
+.about-student__item:not(:last-child)::after {
+  content: "";
+  display: block;
+  background-color: #424242;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+}
+
+.about-student__item:not(:last-child) {
+  margin-bottom: 20px;
+  padding-bottom: 19px;
+}
+
+.about-student__link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.about-student__item-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  list-style: none;
+  text-decoration: none;
+}
+
+.about-student__arrow {
+  margin-left: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .about-student {
+    padding: 90px 0;
   }
-  
-  .aboutme__avatar {
-    border-radius: 10px;
-    object-fit: cover;
-    object-position: center;
-    width: 270px;
-    height: 327px;
+
+  .about-student__box {
+    margin-right: 20px;
   }
-  
-  @media screen and (max-width: 875px) {
-    .aboutme {
-      margin: 0 50px;
-    }
-    .aboutme__title {
-      margin-top: 90px;
-    }
-    .aboutme__profile {
-      margin-bottom: 93px;
-    }
-    .aboutme__discription {
-      max-width: 364px;
-      margin-right: 49px;
-    }
-    .aboutme__name {
-      font-size: 40px;
-      line-height: 40px;
-      letter-spacing: -1.6px;
-    }
-    .aboutme__job {
-      font-size: 12px;
-      line-height: 18px;
-      margin-top: 16px;
-      margin-bottom: 20px;
-    }
-    .aboutme__text {
-      font-size: 12px;
-      line-height: 18px;
-      margin-bottom: 70px;
-    }
-    .aboutme__avatar {
-      width: 255px;
-      height: 307px;
-    }
+
+  .about-student__name {
+    font-size: 40px;
+    margin-bottom: 16px;
   }
-  
-  @media screen and (max-width: 565px) {
-    .aboutme {
-      margin: 0 14px;
-    }
-    .aboutme__title {
-      margin: 70px 0 60px;
-    }
-    .aboutme__profile {
-      flex-direction: column-reverse;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 70px;
-    }
-    .aboutme__discription {
-      max-width: 292px;
-      margin-right: 0;
-    }
-    .aboutme__name {
-      font-size: 30px;
-      letter-spacing: -1.2px;
-    }
-    .aboutme__job {
-      margin-top: 17px;
-      font-size: 11px;
-      line-height: 16px;
-    }
-    .aboutme__text {
-      margin-bottom: 39px;
-      font-size: 11px;
-      line-height: 16px;
-    }
-    .aboutme__avatar {
-      width: 275px;
-      height: 352px;
-      margin-bottom: 40px;
-      object-fit: cover;
-    }
+
+  .about-student__profession {
+    font-size: 12px;
+    margin-bottom: 20px;
   }
+
+  .about-student__description {
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .about-student__image {
+    width: 255px;
+    height: 307px;
+  }
+
+  .about-student__item {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 668px) {
+  .about-student__wrapper {
+    flex-direction: column-reverse;
+    margin-bottom: 40px;
+  }
+
+  .about-student__box {
+    margin-right: 0;
+  }
+
+  .about-student__image {
+    object-position: top 20px;
+    width: 100%;
+    height: 307px;
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .about-student {
+    padding: 70px 0;
+  }
+
+  .about-student__title {
+    margin-bottom: 60px;
+  }
+
+  .about-student__name {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .about-student__profession,
+  .about-student__description {
+    font-size: 11px;
+  }
+
+  .about-student__image {
+    height: 352px;
+  }
+
+  .about-student__portfolio {
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+
+  .about-student__item {
+    font-size: 17px;
+  }
+
+  .about-student__item-link::after {
+    width: 11px;
+    height: 10px;
+  }
+
+  .about-student__arrow {
+    width: 11px;
+    height: 10px;
+  }
+}
