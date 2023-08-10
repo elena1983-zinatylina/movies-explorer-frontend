@@ -82,5 +82,6 @@ class Api {
     return promise.then(this._getJson);
   }
 }
+
 const MainApi = new Api(URL, MOVIES_URL);
 export default MainApi;
