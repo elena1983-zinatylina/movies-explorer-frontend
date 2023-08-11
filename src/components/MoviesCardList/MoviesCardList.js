@@ -10,10 +10,10 @@ function MoviesCardList({ movies, searchRequest, statusPreloader }) {
         <Preloader />
       ) : (
         <ul className="moviescardlist__list">
-          {movies.map((movie) => (
+          {movies?.map((movie) => (
             <MoviesCard key={movie.movieId} movie={movie} />
           ))}
-          {movies.length === 0 && searchRequest && !statusPreloader && (
+          {movies?.length === 0 && searchRequest && !statusPreloader && (
             <li>
               <span className="moviescardlist__text">Ничего не найдено</span>
             </li>
