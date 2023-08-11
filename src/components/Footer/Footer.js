@@ -12,7 +12,7 @@ function Footer() {
         <p className="footer__copyright">&copy; {currentYear}</p>
         <ul className="footer__links">
           <li className='footer__links-item'><a href="https://practicum.yandex.ru" className="footer__link link" target="_blank" rel="noreferrer">Яндекс.Практикум</a></li>
-          <li className='footer__links-item'><a href="https://github.com/MarinaPrivalova" className="footer__link link" target="_blank" rel="noreferrer">Github</a></li>
+          <li className='footer__links-item'><a href="https://github.com/elena1983-zinatylina" className="footer__link link" target="_blank" rel="noreferrer">Github</a></li>
         </ul>
       </div>
     </footer>
