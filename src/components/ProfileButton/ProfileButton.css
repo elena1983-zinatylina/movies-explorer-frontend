@@ -1,4 +1,4 @@
-.profile-link {
+/*.profile-link {
     display: flex;
     align-items: center;
   }
@@ -22,4 +22,4 @@
     .header__movie-links + .profile-link {
       display: none;
     }
-  }
+  }*/

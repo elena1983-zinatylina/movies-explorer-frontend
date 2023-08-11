@@ -1,4 +1,4 @@
-export default function SwitchToggle  ({
+/*export default function SwitchToggle  ({
     position,
     name,
     handleCheckbox,
@@ -19,4 +19,4 @@ export default function SwitchToggle  ({
         <p className='switch-toggle__name'>{name}</p>
       </div>
     );
-  };
+  };*/

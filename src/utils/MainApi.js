@@ -2,6 +2,8 @@ const URL = 'https://api.diplom.zee.nomoreparties.sbs';
 const MOVIES_URL = "https://api.nomoreparties.co/beatfilm-movies";
 const MOVIES_IMAGE_URL = "https://api.nomoreparties.co";
 
+
+
 class Api {
   constructor(URL, MOVIES_URL) {
     this._URL = URL;
@@ -46,14 +48,14 @@ class Api {
   }
 
   getSavedMovies() {
-    const promise = fetch(`${this._URL}movies`, {
+    const promise = fetch(`${this._URL}/movies`, {
       headers: this._getHeaders(),
     });
     return promise.then(this._getJson);
   }
 
   sendMovies(data, email) {
-    const promise = fetch(`${this._URL}movies`, {
+    const promise = fetch(`${this._URL}/movies`, {
       method: "POST",
       headers: this._getHeaders(),
       body: JSON.stringify({
@@ -75,7 +77,7 @@ class Api {
   }
 
   deleteMovies(id) {
-    const promise = fetch(`${this._URL}movies/${id}`, {
+    const promise = fetch(`${this._URL}/movies/${id}`, {
       method: "DELETE",
       headers: this._getHeaders(),
     });

@@ -1,95 +1,205 @@
-import  MainForm  from "../MainForm/MainForm";
-import { useForm } from "../../hooks/useForm";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import './Register.css';
+import { registerUser } from '../../utils/apiAuth';
+import Logo from '../../images/logo.svg';
 
-export const Register = ({ registerUser, errorMessage }) => {
-  const { form, errors, isValid, handleChange } = useForm({
-    name: "",
-    password: "",
-    email: "",
-  });
+function Register({ registerUser, registerError }) {
+  /**Переменные состояния полей почты и пароля*/
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  /**Переменные состояния ошибок при заполнении полей*/
+  const [nameError, setNameError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  /**Переменные валидности полей при заполнении*/
+  const [nameValid, setNameValid] = useState(false);
+  const [emailValid, setEmailValid] = useState(false);
+  const [passwordValid, setPasswordValid] = useState(false);
+  /**Переменная состояния статуса изменений*/
+  const [messageStatus, setMessageStatus] = useState('');
+  /**Переменная состония валидности формы*/
+  const [formValid, setFormValid] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { name, email, password } = form;
+  /**Функция изменения имени пользователя и проверка формы*/
+  const handleChangeName = (e) => {
+    setName(e.target.value);
+    setMessageStatus('');
+    const nameRegex = /^[а-яА-ЯёЁa-zA-Z -]+$/g;
 
-    registerUser(name, email, password);
+    if (e.target.value.length === 0) {
+      setNameError('Поле не может быть пустым');
+      setNameValid(false);
+    } else if (e.target.value.length < 2 || e.target.value.length > 30) {
+      setNameError('Имя пользователя должно быть длинее 2 и меньше 30');
+      setNameValid(false);
+    } else if (!nameRegex.test(String(e.target.value).toLocaleLowerCase())) {
+      setNameError('Некорректное имя');
+      setNameValid(false);
+    } else {
+      setNameError('');
+      setNameValid(true);
+    }
   };
 
-  return (
-    <MainForm
-      title='Добро пожаловать!'
-      nameForm='register'
-      nameButton='Зарегистрироваться'
-      submit={handleSubmit}
-      isValid={isValid}
-      errorMessage={errorMessage}
-    >
-      <label className='main-form__label' htmlFor='name'>
-        Имя
-        <input
-          className={`main-form__input ${
-            errors.name ? "main-form__input_error" : ""
+  /**Функция изменения почты пользователя и проверка формы*/
+  function handleChangeEmail(e) {
+    setEmail(e.target.value);
+    setMessageStatus('');
+    const emailRegex = /^([\w]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
+    if (e.target.value.length === 0) {
+      setEmailError('Поле не может быть пустым');
+      setEmailValid(false);
+    } else if (!emailRegex.test(String(e.target.value).toLocaleLowerCase())) {
+      setEmailError('Некорректный email');
+      setEmailValid(false);
+    } else {
+      setEmailError('');
+      setEmailValid(true);
+    }
+  }
+
+  /**Функция изменения пароля пользователя и проверка формы*/
+  function handleChangePassword(e) {
+    setPassword(e.target.value);
+    setMessageStatus('');
+
+    if (!e.target.value) {
+      setPasswordError('Поле не может быть пустым');
+      setPasswordValid(false);
+    } else if (e.target.value.length <= 7) {
+      setPasswordError(
+        'Длина пароля не может быть меньше 8 и больше 30 символов'
+      );
+      setPasswordValid(false);
+    } else {
+      setPasswordError('');
+      setPasswordValid(true);
+    }
+  }
+
+  /**Функция проверки валидности полей*/
+  function inputValid() {
+    if (!nameValid || !emailValid || !passwordValid) {
+      setFormValid(false);
+      setMessageStatus('');
+      return;
+    }
+    setFormValid(true);
+  }
+
+  /**Функция сохранения формы*/
+  function handleSubmit(e) {
+    e.preventDefault();
+   registerUser({ name, email, password });
+  }
+
+  /**Отслеживание состояния полей инпутов*/
+  useEffect(() => {
+    inputValid();
+  }, [name, email, password]);
+
+
+   return (
+    <section className='authorization'>
+      <Link className='authorization__link link' to='/'>
+        <img className='authorization__logo' src={Logo} alt='Логотип'></img>
+      </Link>
+      <h1 className='authorization__title'>Добро пожаловать!</h1>
+      <form
+        className='authorization-form'
+        action='#'
+        name='authorization-form'
+        onSubmit={handleSubmit}
+      >
+        <fieldset className='authorization-form__fieldset'>
+          <div className='authorization-form__input-container'>
+            <label
+              className='authorization-form__label'
+              htmlFor='authorization-form__input-name'
+            >
+              Имя
+            </label>
+            <input
+              type='text'
+              id='authorization-form__input-name'
+              className='authorization-form__input'
+              placeholder='Введите ваше имя'
+              name='name'
+              required
+              minLength='2'
+              maxLength='30'
+              value={name}
+              onChange={handleChangeName}
+            />
+            <span className='authorization-form__error'>{nameError}</span>
+          </div>
+          <div className='authorization-form__input-container'>
+            <label
+              className='authorization-form__label'
+              htmlFor='authorization-form__input-email'
+            >
+              E-mail
+            </label>
+            <input
+              type='email'
+              id='authorization-form__input-email'
+              className='authorization-form__input'
+              placeholder='Введите ваш email'
+              name='email'
+              required
+              minLength='5'
+              maxLength='30'
+              value={email}
+              onChange={handleChangeEmail}
+            />
+            <span className='authorization-form__error'>{emailError}</span>
+          </div>
+          <div className='authorization-form__input-container'>
+            <label
+              className='authorization-form__label'
+              htmlFor='authorization-form__input-password'
+            >
+              Пароль
+            </label>
+            <input
+              type='password'
+              id='authorization-form__input-password'
+              className='authorization-form__input'
+              placeholder='Введите пароль'
+              name='password'
+              required
+              minLength='8'
+              maxLength='30'
+              value={password}
+              onChange={handleChangePassword}
+            />
+            <span className='authorization-form__error'>{passwordError}</span>
+          </div>
+        </fieldset>
+        <span className='authorization-form__error authorization-form__error_server'>
+          {registerError}
+        </span>
+        <button
+          className={`authorization-form__btn button ${
+            !formValid ? 'authorization-form__btn_disabled' : ''
           }`}
-          name='name'
-          id='name'
-          type='text'
-          placeholder='Имя'
-          value={form.name || ""}
-          minLength='2'
-          maxLength='20'
-          onChange={handleChange}
-          required
-        />
-        {errors.name && (
-          <span className='main-form__input-error'>{errors.name}</span>
-        )}
-      </label>
-      <label className='main-form__label' htmlFor='email'>
-        E-mail{" "}
-        <input
-          className={`main-form__input ${
-            errors.email ? "main-form__input_error" : ""
-          }`}
-          name='email'
-          type='email'
-          id='email'
-          placeholder='Почта'
-          minLength='5'
-          maxLength='30'
-          value={form.email || ""}
-          onChange={handleChange}
-          pattern='([A-zА-я])+([0-9\-_\+\.])*([A-zА-я0-9\-_\+\.])*@([A-zА-я])+([0-9\-_\+\.])*([A-zА-я0-9\-_\+\.])*[\.]([A-zА-я])+'
-          required
-        />
-        {errors.email && (
-          <span className='main-form__input-error input-error'>
-            {errors.email}
-          </span>
-        )}
-      </label>
-      <label className='main-form__label' htmlFor='password'>
-        Пароль
-        <input
-          className={`main-form__input ${
-            errors.password ? "main-form__input_error" : ""
-          }`}
-          name='password'
-          type='password'
-          id='password'
-          placeholder='Пароль'
-          minLength='4'
-          maxLength='12'
-          value={form.password || ""}
-          onChange={handleChange}
-          required
-        />
-        {errors.password && (
-          <span className='main-form__input-error input-error'>
-            {errors.password}
-          </span>
-        )}
-      </label>
-    </MainForm>
+          type='submit'
+          disabled={!formValid}
+        >
+          Зарегистрироваться
+        </button>
+        <div className='authorization-form__question-container'>
+          <p className='authorization-form__question'>Уже зарегистрированы?</p>
+          <Link className='authorization-form__question-link link' to='/signin'>
+            Войти
+          </Link>
+        </div>
+      </form>
+    </section>
   );
-};
+}
+
 export default Register;
