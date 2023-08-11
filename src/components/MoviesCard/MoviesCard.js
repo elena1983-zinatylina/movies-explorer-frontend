@@ -1,87 +1,49 @@
-import { useState, useEffect, useContext } from "react";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
+import React from "react";
+import { useLocation } from "react-router-dom";
 import "./MoviesCard.css";
+import { MOVIE_HOUR_IN_MINUTES } from "../../utils/constants";
 
-export default function MoviesCard  ({
-  movie,
-  savedMoviesList,
-  saveMovie,
-  deleteMovie,
-})  {
-  const currentUser = useContext(CurrentUserContext);
-  const [savedMovie, setSavedMovie] = useState();
-  const [isLiked, setIsLiked] = useState(false);
-  const isSavedMoviesPage = window.location.pathname === "/saved-movies";
+function MoviesCard({ movie }) {
+  const location = useLocation();
 
-  //проверка наличия сохраненных фильмов
-  useEffect(() => {
-    if (savedMoviesList) {
-      savedMoviesList.forEach((savedMovie) => {
-        if (savedMovie.movieId === movie.id) {
-          setIsLiked(true);
-          setSavedMovie(savedMovie._id);
-        }
-      });
-    }
-  }, [savedMoviesList]);
-
-  const handleSaveOrDeleteMovie = () => {
-    if (isSavedMoviesPage) {
-      deleteMovie(movie._id);
-    } else {
-      if (!isLiked) {
-        saveMovie(movie, currentUser.email);
-        setIsLiked(true);
-      } else {
-        deleteMovie(savedMovie);
-        setIsLiked(false);
-      }
-    }
-  };
-
-  const timeЕranslation = () => {
-    const totalMinutes = movie.duration;
-    const minutes = totalMinutes % 60;
-    const hours = Math.floor(totalMinutes / 60);
-
-    return `${hours}ч ${minutes !== 0 ? minutes + "м" : ""}`;
-  };
+  const hourDuration =
+    movie.duration >= MOVIE_HOUR_IN_MINUTES
+      ? `${Math.floor(movie.duration / MOVIE_HOUR_IN_MINUTES)} ч `
+      : "";
+  const minuteDuration =
+    movie.duration === MOVIE_HOUR_IN_MINUTES
+      ? ""
+      : `${movie.duration % MOVIE_HOUR_IN_MINUTES} м`;
+  const movieDuration = hourDuration + minuteDuration;
 
   return (
-    <li className='movies-cards__item'>
-      <div className='movies-cards__head'>
-        <div className='movies-cards__info'>
-          <h3 className='movies-cards__title'>{movie.nameRU}</h3>
-          <p className='movies-cards__duration'>
-            {movie.duration > 60 ? timeЕranslation() : `${movie.duration} мин`}
-          </p>
-        </div>
-        <button
-          className={`movies-cards__favourite ${
-            isLiked ? "movies-cards__favourite_active" : ""
-          } ${
-            isSavedMoviesPage ? "movies-cards__favourite_saved" : ""
-          }  hover-link`}
-          aria-label='Добавить фильм в избранное'
-          onClick={handleSaveOrDeleteMovie}
-        ></button>
-      </div>
+    <li className="card">
       <a
-        className='movies-cards__link hover-link'
-        target='_blank'
-        rel='noreferrer'
         href={movie.trailerLink}
+        className="card__link link"
+        target="_blank"
+        rel="noreferrer"
       >
-        <img
-          className='movies-cards__image'
-          src={
-            isSavedMoviesPage
-              ? movie.image
-              : `https://api.nomoreparties.co${movie.image.url}`
-          }
-          alt='Изображение фильма'
-        />
+        <img className="card__img" alt={movie.nameRU} src={movie.thumbnail} />
       </a>
+      <div className="card__content">
+        <h2 className="card__name">{movie.nameRU}</h2>
+        {location.pathname === "/movies" && (
+          <button
+            className="card__btn card__btn__blank button"
+            type="button"
+          ></button>
+        )}
+        {location.pathname === "/saved-movies" && (
+          <button
+            className="card__btn card__btn_delete "
+            type="button"
+          ></button>
+        )}
+      </div>
+      <p className="card__duration">{movieDuration}</p>
     </li>
   );
-};
+}
+
+export default MoviesCard;

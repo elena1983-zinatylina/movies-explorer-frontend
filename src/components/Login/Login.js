@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 import { authorizeUser } from '../../utils/apiAuth';
 
-function Login({ loginUser, loginError }) {
+function Login({ onLogin, loginError }) {
   /**Переменные состояния полей почты и пароля*/
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -68,7 +68,7 @@ function Login({ loginUser, loginError }) {
   /**Функция сохранения формы*/
   function handleSubmit(e) {
     e.preventDefault();
-    loginUser({ email, password });
+    onLogin({ email, password });
   }
 
   /**Отслеживание состояния полей инпутов*/

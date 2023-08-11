@@ -1,94 +1,107 @@
-import { useState } from "react";
-import './SearchForm.css';
-import arrow from "../../images/iconfind.svg";
-import  SwitchToggle  from "../SwitchToggle/SwitchToggle";
-import  SwitchToggleMobile  from "../SwitchToggle/SwitchToggleMobile/SwitchToggleMobile";
+import React, { useState, useRef, useEffect } from "react";
+import "./SearchForm.css";
+import Find from "../../images/find.svg";
+import Iconfind from "../../images/iconfind.svg";
 
-export default function SearchForm  ({
-  handleSearchMovies,
-  inputSearchForm,
-  setInputSearchForm,
-  checkboxValue,
-  setCheckboxValue,
-  filterSavedMovies,
-})  {
-  const [inputText, seInputText] = useState("");
-  const [checkboxShortMovies, setCheckboxShortMovies] = useState(false);
-  const isSavedMoviesPage = window.location.pathname === "/saved-movies";
+function SearchForm({ filterMovies, required = true, page }) {
+  /**переменная состояния кнопки поиска*/
+  const [isDisabledButton, setIsDisabledButton] = useState(true);
+  /**переменная состояния ошибки*/
+  const [error, setError] = useState({ name: "", shortMovie: "" });
+  /*Переменная состония поисковой строки*/
+  const [value, setValue] = useState({ name: "", shortMovie: false });
 
-  // сабмит формы поиска
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (isSavedMoviesPage) {
-      console.log("saved page");
-      filterSavedMovies(inputText.toLowerCase(), checkboxShortMovies);
-    } else {
-      handleSearchMovies(inputSearchForm, checkboxValue);
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    const searchMovies = JSON.parse(localStorage.getItem("search-movies"));
+    if (searchMovies) {
+      setValue(searchMovies);
+      filterMovies(searchMovies);
     }
+    if (page === "saved-movies") {
+      filterMovies({ name: "", shortMovie: false });
+      setValue({ name: "", shortMovie: false });
+    }
+  }, []);
+
+  const handleInputChange = (evt) => {
+    const { name, value: inputValue, validationMessage } = evt.target;
+
+    const updatedValue = {
+      ...value,
+      [name]: inputValue,
+    };
+    if (page === "movies") {
+      localStorage.setItem("search-movies", JSON.stringify(updatedValue));
+    }
+    setValue(updatedValue);
+    setError((state) => ({ ...state, [name]: validationMessage }));
+    setIsDisabledButton(!formRef.current.checkValidity());
   };
 
-  //контролируемый инпут
-  const handleInputChange = (e) => {
-    if (isSavedMoviesPage) {
-      seInputText(e.target.value);
-    } else {
-      setInputSearchForm(e.target.value);
+  const handleCheckbox = (evt) => {
+    const { name, checked } = evt.target;
+    const updatedValue = { ...value, [name]: checked };
+
+    if (page === "movies") {
+      localStorage.setItem("search-movies", JSON.stringify(updatedValue));
     }
+    setValue(updatedValue);
+    filterMovies(updatedValue);
   };
 
-  // переключатель состояния checkbox
-  const handleCheckbox = (e) => {
-    if (isSavedMoviesPage) {
-      filterSavedMovies(inputText, e.target.checked);
-      setCheckboxShortMovies(e.target.checked);
-    } else {
-      setCheckboxValue(e.target.checked);
-      handleSearchMovies(inputSearchForm, e.target.checked);
-    }
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    filterMovies(value);
   };
+
   return (
-    <div className="search">
-      <div className="container container_movies-mobile">
-        <div className="search__wrapper">
-          <form className="search__form" action="#" onSubmit={handleSubmit}>
-            <div className="search__inner">
-              <input
-                className="search__input"
-                type="text"
-                name="search"
-                placeholder="Поиск"
-                minLength={2}
-                maxLength={90}
-                value={inputSearchForm}
-                onChange={handleInputChange}
-                required
-              />
-              <button
-                className="search__button hover-link"
-                aria-label="Поиск фильма"
-                type="submit"
-              >
-                <img className="search__arrow" src={arrow} alt="Стрелка" />
-              </button>
-              <SwitchToggle
-                name={"Короткометражки"}
-                position={"search__toggle"}
-                handleCheckbox={handleCheckbox}
-                checkboxValue={checkboxValue}
-              />
-            </div>
-            <SwitchToggleMobile
-              name={"Короткометражки"}
-              handleCheckbox={handleCheckbox}
-              checkboxValue={checkboxValue}
-            />
-
-            {!inputSearchForm && !inputText && (
-              <p className="search__error">Нужно ввести ключевое слово</p>
-            )}
-          </form>
-        </div>
+    <section className="seachform">
+      <form
+     
+        className="seachform__input-container"
+        onSubmit={handleSubmit}
+        ref={formRef}
+        noValidate
+      >
+         <img className="seachform__blackbtn button"
+                        src={Iconfind}
+                        alt='знак поиск темный'></img>
+        <input
+          className="seachform__input"
+          placeholder="Фильм"
+          required={required}
+          onChange={handleInputChange}
+          value={value.name}
+          name="name"
+        ></input>
+         <img  className={`seachform__btn button ${
+            isDisabledButton ? "searchform__btn_disabled" : ""
+          }`}
+          disabled={isDisabledButton}
+          type="submit"
+          onClick={handleSubmit}
+          src={Find}
+          alt='знак поиск'></img>
+   
+      <span className="searchform__span">{error.name}</span>
+      <div className="seachform__checkbox-container">
+        <input
+          type="checkbox"
+          className="seachform__checkbox"
+          id="seachform__checkbox"
+          name="shortMovie"
+          onChange={handleCheckbox}
+          checked={value.shortMovie}
+        ></input>
+        <label className="seachform__label link" htmlFor="seachform__checkbox">
+          Короткометражки
+        </label>
       </div>
-    </div>
+      </form>
+    </section>
   );
-};
+}
+
+export default SearchForm;

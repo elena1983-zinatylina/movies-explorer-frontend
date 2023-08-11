@@ -4,7 +4,7 @@ import './Register.css';
 import { registerUser } from '../../utils/apiAuth';
 import Logo from '../../images/logo.svg';
 
-function Register({ registerUser, registerError }) {
+function Register({ onRegister, registerError }) {
   /**Переменные состояния полей почты и пароля*/
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -93,7 +93,7 @@ function Register({ registerUser, registerError }) {
   /**Функция сохранения формы*/
   function handleSubmit(e) {
     e.preventDefault();
-   registerUser({ name, email, password });
+    onRegister({ name, email, password });
   }
 
   /**Отслеживание состояния полей инпутов*/

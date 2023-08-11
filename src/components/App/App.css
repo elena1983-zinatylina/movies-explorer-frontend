@@ -1,51 +1,39 @@
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-.page {
+.app {
+  font-family: "Inter", "Arial", sans-serif;
+  width: 100%;
+  min-height: 100vh;
   background-color: #202020;
-  color: #fff;
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.4;
-  position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.hover-link {
-  transition: opacity 0.3s ease;
+.button:hover {
+  opacity: 0.8;
+  transition: opacity 0.4s linear 0.1s;
 }
 
-.hover-link:hover {
+.link:hover {
   opacity: 0.7;
+  transition: opacity 0.4s linear 0.1s;
 }
 
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 10px;
+.section-title {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  border-bottom: 1px solid #dadada;
+  padding-bottom: 23px;
+  max-width: 1140px;
+  width: 100%;
 }
 
-@media screen and (max-width: 768px) {
-  .container {
-    padding: 0px 50px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .container {
-    padding: 0px 18px;
-  }
-
-  .container_movies-mobile {
-    padding: 0 10px;
+@media screen and (max-width: 565px) {
+  .section-title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    padding-bottom: 28px;
   }
 }

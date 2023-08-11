@@ -1,89 +1,76 @@
-const URL = 'https://api.diplom.zee.nomoreparties.sbs';
+const BASE_URL = 'https://api.diplom.zee.nomoreparties.sbs';
 const MOVIES_URL = "https://api.nomoreparties.co/beatfilm-movies";
 const MOVIES_IMAGE_URL = "https://api.nomoreparties.co";
 
 
 
-class Api {
-  constructor(URL, MOVIES_URL) {
-    this._URL = URL;
-    this._MOVIES_URL = MOVIES_URL;
-  }
+const headers = {
+  'Content-Type': 'application/json',
+  Authorization: '',
+};
 
-  _getToken() {
-    const token = localStorage.getItem("jwt");
-    return token;
+const handleResponce = (res) => {
+  if (res.ok) {
+    return res.json();
   }
+  return Promise.reject(res.status);
+};
 
-  _getHeaders() {
-    return {
-      "Content-Type": "application/json",
-      authorization: this._getToken(),
-    };
-  }
+export const setToken = (token) => {
+  headers.Authorization = `Bearer ${token}`;
+};
 
-  _getJson(res) {
-    {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status} что то идет не по плану`);
-    }
-  }
+export const register = (data) => {
+  return fetch(`${BASE_URL}/signup`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  }).then(handleResponce);
+};
 
-  _request(url, options) {
-    return fetch(url, options).then(this._getJson);
-  }
+export const authorize = (data) => {
+  return fetch(`${BASE_URL}/signin`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  }).then(handleResponce);
+};
 
-  sendUser(data) {
-    const promise = fetch(`${this._URL}users/me`, {
-      method: "PATCH",
-      headers: this._getHeaders(),
-      body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-      }),
-    });
-    return promise.then(this._getJson);
-  }
+export const getUserInfo = () => {
+  return fetch(`${BASE_URL}/users/me`, {
+    headers,
+  }).then(handleResponce);
+};
 
-  getSavedMovies() {
-    const promise = fetch(`${this._URL}/movies`, {
-      headers: this._getHeaders(),
-    });
-    return promise.then(this._getJson);
-  }
+export const updateUserInfo = ({ name, email }) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({ email, name }),
+  }).then(handleResponce);
+};
 
-  sendMovies(data, email) {
-    const promise = fetch(`${this._URL}/movies`, {
-      method: "POST",
-      headers: this._getHeaders(),
-      body: JSON.stringify({
-        country: data.country,
-        director: data.director,
-        duration: data.duration,
-        year: data.year,
-        description: data.description,
-        image: `${MOVIES_IMAGE_URL}${data.image.url}`,
-        trailerLink: data.trailerLink,
-        nameEN: data.nameEN,
-        nameRU: data.nameRU,
-        thumbnail: `${MOVIES_URL}data.image.formats.thumbnail.url`,
-        movieId: data.id,
-        owner: email,
-      }),
-    });
-    return promise.then(this._getJson);
-  }
+export const savedMovie = (movie) => {
+  return fetch(`${BASE_URL}/movies`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(movie),
+  }).then(handleResponce);
+};
 
-  deleteMovies(id) {
-    const promise = fetch(`${this._URL}/movies/${id}`, {
-      method: "DELETE",
-      headers: this._getHeaders(),
-    });
-    return promise.then(this._getJson);
-  }
+export const deleteMovie = (id) => {
+  return fetch(`${BASE_URL}/movies/${id}`, {
+    method: 'DELETE',
+    headers,
+  }).then(handleResponce);
+};
+
+export const getAllFilms = () => {
+  return fetch(`${BASE_URL}/movies`, {
+    headers,
+  }).then(handleResponce);
 }
-
-const MainApi = new Api(URL, MOVIES_URL);
-export default MainApi;

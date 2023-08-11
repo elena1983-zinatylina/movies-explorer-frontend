@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.diplom.zee.nomoreparties.sbs'
+/*export const BASE_URL = 'https://api.diplom.zee.nomoreparties.sbs'
 
 const headers = {
   'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export const updateUserInfo = ({ name, email }) => {
     body: JSON.stringify({ email, name }),
   }).then(handleResponce);
 };
-
+*/
 
 
 
