@@ -79,7 +79,7 @@
 
 .seachform__checkbox+.seachform__label::before {
   content: "";
-  background-image: url("../../images/smalltumb.svg");
+  background-image: url("../../images/smalltumbnotactiv.svg");
   display: inline-block;
   width: 36px;
   height: 20px;

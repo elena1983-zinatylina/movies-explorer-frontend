@@ -13,6 +13,4 @@ export const DISPLAY_SETTINGS = {
         start: 5,
         load: 1
     }
-}
-
-export const SHORT_MOVIE_DURATION = 40;
+ };
