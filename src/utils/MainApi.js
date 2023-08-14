@@ -69,6 +69,7 @@ export const deleteMovie = (id) => {
   }).then(handleResponce);
 };
 
+
 export const getAllFilms = () => {
   return fetch(`${BASE_URL}/movies`, {
     headers,
