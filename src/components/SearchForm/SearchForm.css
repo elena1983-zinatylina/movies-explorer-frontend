@@ -7,6 +7,20 @@
   border-radius: 9px;
 }
 
+.searchform__span {
+  margin: 0;
+  margin-top: 31px;
+  padding: 0;
+  display: block;
+  max-height: 30px;
+  max-width: 396px;
+  color: #ee3465;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  align-self: flex-start;
+}
+
 .seachform__input-container {
   height: 72px;
   padding: 0 10px 0 25px;
@@ -21,7 +35,7 @@
 .seachform__input {
   margin: -51px;
   padding: 0px;
-  padding-right: 0;
+  padding-left: 0;
   color: #8B8B8B;
   font-size: 18px;
   font-weight: 500;
@@ -99,14 +113,14 @@
   background-image: url("../../images/smalltumb.svg");
 }
 
-@media screen and (max-width:1279px) {
+@media screen and (max-width:2200px) {
   .seachform {
     width: 85%;
     margin: 9px auto 125px;
   }
 .seachform__input{
   margin: 0;
-    width: 49%;
+    width: 54%;
 }
   .seachform__input-container {
     padding: 1px 5px 0px 0px;
@@ -157,7 +171,9 @@
     padding: 0;
     width: 98%;
   }
-
+  .searchform__span {
+   margin-left: 20px;
+  }
   .seachform__input-container {
     margin-bottom: 90px;
     flex-direction: column;
@@ -172,7 +188,6 @@
     width: 82%;
 }
 
-
   .seachform__btn {
     margin: -46px 0 0 57.88vw;
   }
@@ -185,6 +200,7 @@
 
   .seachform__checkbox+.seachform__label {
     font-size: 11px;
+    margin-top: 20px;
   }
   .seachform__checkbox+.seachform__label::before {
     margin-right: 14px;

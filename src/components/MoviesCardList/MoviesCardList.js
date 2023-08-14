@@ -13,13 +13,13 @@ function MoviesCardList({ movies, searchRequest,  handleSavedMovie,
         <ul className="moviescardlist__list">
           {movies?.map((movie) => (
             <MoviesCard key={movie.movieId} movie={movie}  handleSavedMovie={handleSavedMovie}/>
-          ))}
-          {movies?.length === 0 && searchRequest && !statusPreloader && (
-            <li>
-              <span className="moviescardlist__text">Ничего не найдено</span>
-            </li>
-          )}
-        </ul>
+            ))}
+            {movies.length === 0 && searchRequest && !statusPreloader && (
+              <li>
+                <p className="moviescardlist__text">Ничего не найдено</p>
+              </li>
+            )}
+          </ul>
       )}
     </section>
   );

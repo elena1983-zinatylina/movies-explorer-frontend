@@ -43,7 +43,9 @@ function MoviesCard({ movie, handleSavedMovie }) {
             className="card__btn card__btn_delete "
             type="button"
             onClick={savedMovie}
-          ></button>
+          >
+            
+          </button>
         )}
       </div>
       <p className="card__duration">{movieDuration}</p>

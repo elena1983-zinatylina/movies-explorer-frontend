@@ -102,6 +102,7 @@ function SavedMovies({ loggedIn }) {
           filterMovies={filterMovies}
           required={false}
           page="saved-movies"
+         
         />
         <MoviesCardList
           movies={filteredMovies}

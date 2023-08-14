@@ -1,5 +1,5 @@
 .card {
-  margin: 0 0 0 0;
+  margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@
   margin: 0;
   padding: 0;
   width: 270px;
-  height: 151px;
+  height: 147px;
   object-fit: cover;
   object-position: center;
 }
@@ -35,13 +35,14 @@
 .card__name {
   margin: 0;
   padding: 0;
-  max-width: 260px;
   color: #fff;
   font-family: Inter;
   font-size: 13px;
   font-weight: 500;
   line-height: normal;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card__btn {

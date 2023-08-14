@@ -84,8 +84,7 @@ function SearchForm({ filterMovies, required = true, page }) {
           onClick={handleSubmit}
           src={Find}
           alt='знак поиск'></img>
-   
-      <span className="searchform__span">{error.name}</span>
+   <span className="searchform__span">{error.name}</span>
       <div className="seachform__checkbox-container">
         <input
           type="checkbox"
