@@ -5,7 +5,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { getAllMovies } from "../../utils/MoviesApi";
-import { getAllFilms, setToken } from "../../utils/MainApi";
+import { getAllFilms, setToken, deleteMovie, savedMovie } from "../../utils/MainApi";
 import { DISPLAY_SETTINGS, SHORT_MOVIE_DURATION } from "../../utils/constants";
 
 
@@ -121,6 +121,92 @@ function Movies({ loggedIn }) {
     }
   };
 
+   /**удалить, сохранить фильм*/
+   const handleSavedMovie = (movie) => {
+    if (movie.saved) {
+      console.log("movie.saved", movie.saved);
+      deleteMovie(movie._id)
+        .then(() => {
+          console.log("movie._id", movie._id);
+          setMovies((beatMovies) => {
+            const editedMovies = beatMovies.map((beatMovie) => {
+              if (beatMovie._id === movie._id) {
+                beatMovie.saved = false;
+              }
+              return beatMovie;
+            });
+            console.log("editedMovies", editedMovies);
+
+            /**сохранить отредактированный список фильмов в локальное хранилище*/
+            localStorage.setItem("local-movies", JSON.stringify(editedMovies));
+            /**сохранить список сохраненных фильмов в локальное хранилище*/
+            localStorage.setItem(
+              "saved-movies",
+              JSON.stringify(editedMovies.filter((movie) => movie.saved))
+            );
+
+            console.log("editedMovies", editedMovies);
+            return editedMovies;
+          });
+          localStorage.removeItem("saved-movies");
+        })
+        .catch((err) => {
+          console.error("ошибка удаления: ", err);
+        });
+    } else {
+      const recentMovie = {
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: `https://api.nomoreparties.co/${movie.image.url}`,
+        trailerLink: movie.trailerLink,
+        thumbnail: `https://api.nomoreparties.co/${movie.image.url}`,
+        movieId: movie.id,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+      };
+      console.log("recentMovie", recentMovie);
+      savedMovie(recentMovie)
+        .then((serverMovie) => {
+          console.log("serverMovie присвоен _id", serverMovie);
+
+          setMovies((beatMovies) => {
+            localStorage.removeItem("saved-movies");
+
+            console.log("saved-movies", beatMovies);
+
+            const editedMovies = beatMovies.map((beatMovie) => {
+              if (beatMovie.movieId === serverMovie.movieId) {
+                beatMovie.saved = true;
+                beatMovie._id = serverMovie._id;
+                beatMovie.movieId = serverMovie.movieId;
+                beatMovie.thumbnail = serverMovie.thumbnail;
+              }
+              return beatMovie;
+            });
+            console.log("saved beatMovie", editedMovies);
+
+            /**сохранить отредактированный список фильмов в локальное хранилище*/
+            localStorage.setItem("local-movies", JSON.stringify(editedMovies));
+            /**сохранить список сохраненных фильмов в локальное хранилище*/
+            localStorage.setItem(
+              "saved-movies",
+              JSON.stringify(editedMovies.filter((movie) => movie.saved))
+            );
+
+            console.log("saved local-movies", editedMovies);
+
+            return editedMovies;
+          });
+        })
+        .catch((err) => {
+          console.error("ошибка добавления: ", err);
+        });
+    }
+  };
+
   return (
     <>
       <Header loggedIn={loggedIn} />
@@ -130,6 +216,7 @@ function Movies({ loggedIn }) {
           movies={filteredMovies.filter((_, i) => i < displayedMovies)}
           searchRequest={searchRequest}
           statusPreloader={statusPreloader}
+          handleSavedMovie={handleSavedMovie}
         />
         {(filteredMovies.length > displayedMovies) &&
           <button

@@ -3,7 +3,8 @@ import "./MoviesCardList.css";
 import Preloader from "../Preloader/Preloader";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ movies, searchRequest, statusPreloader }) {
+function MoviesCardList({ movies, searchRequest,  handleSavedMovie,
+  statusPreloader }) {
   return (
     <section className="moviescardlist">
       {statusPreloader ? (
@@ -11,7 +12,7 @@ function MoviesCardList({ movies, searchRequest, statusPreloader }) {
       ) : (
         <ul className="moviescardlist__list">
           {movies?.map((movie) => (
-            <MoviesCard key={movie.movieId} movie={movie} />
+            <MoviesCard key={movie.movieId} movie={movie}  handleSavedMovie={handleSavedMovie}/>
           ))}
           {movies?.length === 0 && searchRequest && !statusPreloader && (
             <li>
