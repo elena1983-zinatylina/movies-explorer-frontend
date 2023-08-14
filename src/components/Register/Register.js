@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Register.css';
-import { registerUser } from '../../utils/apiAuth';
+//import { registerUser } from '../../utils/apiAuth';
 import Logo from '../../images/logo.svg';
 
-function Register({ onRegister, registerError }) {
+function Register({ onRegister, registerError, setRegisterError }) {
   /**Переменные состояния полей почты и пароля*/
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -26,6 +26,7 @@ function Register({ onRegister, registerError }) {
   const handleChangeName = (e) => {
     setName(e.target.value);
     setMessageStatus('');
+    setRegisterError('');
     const nameRegex = /^[а-яА-ЯёЁa-zA-Z -]+$/g;
 
     if (e.target.value.length === 0) {
@@ -47,6 +48,7 @@ function Register({ onRegister, registerError }) {
   function handleChangeEmail(e) {
     setEmail(e.target.value);
     setMessageStatus('');
+    setRegisterError('');
     const emailRegex = /^([\w]+@([\w-]+\.)+[\w-]{2,4})?$/;
 
     if (e.target.value.length === 0) {
@@ -65,7 +67,7 @@ function Register({ onRegister, registerError }) {
   function handleChangePassword(e) {
     setPassword(e.target.value);
     setMessageStatus('');
-
+    setRegisterError('');
     if (!e.target.value) {
       setPasswordError('Поле не может быть пустым');
       setPasswordValid(false);

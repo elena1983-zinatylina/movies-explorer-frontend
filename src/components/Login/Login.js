@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Logo from '../../images/logo.svg';
 import { Link } from 'react-router-dom';
 import './Login.css';
-import { authorizeUser } from '../../utils/apiAuth';
+//import { authorizeUser } from '../../utils/apiAuth';
 
-function Login({ onLogin, loginError }) {
+function Login({ onLogin, loginError, setLoginError }) {
   /**Переменные состояния полей почты и пароля*/
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,6 +28,7 @@ function Login({ onLogin, loginError }) {
     if (e.target.value.length === 0) {
       setEmailError('Поле не может быть пустым');
       setEmailValid(false);
+      setLoginError('');
     } else if (!re.test(String(e.target.value).toLocaleLowerCase())) {
       setEmailError('Некорректный email');
       setEmailValid(false);
@@ -41,6 +42,7 @@ function Login({ onLogin, loginError }) {
   function handleChangePassword(e) {
     setPassword(e.target.value);
     setMessageStatus('');
+    setLoginError('');
 
     if (!e.target.value) {
       setPasswordError('Поле не может быть пустым');
@@ -145,8 +147,11 @@ function Login({ onLogin, loginError }) {
           Войти
         </button>
         <div className='login-form__question-container'>
-          <p className='login-form__question'>Ещё не зарегистрированы?</p>
-          <Link className='login-form__question-link link' to='/signup'>
+          <p className='login-form__question'>
+            Ещё не зарегистрированы?
+            </p>
+          <Link className='login-form__question-link link' 
+          to='/signup'>
             Регистрация
           </Link>
         </div>

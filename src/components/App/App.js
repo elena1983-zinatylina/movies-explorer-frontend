@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -156,7 +156,10 @@ function App() {
           />
           <Route
             path="/signin"
-            element={<Login onLogin={handleLogin} loginError={loginError} />}
+            element={<Login onLogin={handleLogin} 
+            loginError={loginError}
+            setLoginError={setLoginError}
+             />}
           />
           <Route
             path="/signup"
