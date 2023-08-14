@@ -1,8 +1,4 @@
 const BASE_URL = 'https://api.diplom.zee.nomoreparties.sbs';
-const MOVIES_URL = "https://api.nomoreparties.co/beatfilm-movies";
-const MOVIES_IMAGE_URL = "https://api.nomoreparties.co";
-
-
 
 const headers = {
   'Content-Type': 'application/json',

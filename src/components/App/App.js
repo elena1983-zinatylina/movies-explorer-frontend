@@ -72,6 +72,9 @@ function App() {
       })
       .catch((err) => {
         setLoggedIn(false);
+        if (err === "Ошибка: 400") {
+          setRegisterError("Некорректнo введены данные");
+        }
         if (err === "Ошибка: 409") {
           setRegisterError("Пользователь с таким email уже существует");
         }
@@ -95,7 +98,7 @@ function App() {
       })
       .catch((err) => {
         setLoggedIn(false);
-        if (err === 400 || err ===  401) {
+        if (err === "Ошибка: 400" || err ===  "Ошибка: 401") {
           setLoginError("Вы ввели неправильный логин или пароль");
         }
         if (err === "Ошибка: 500") {
@@ -137,12 +140,14 @@ function App() {
           <Route path="/" element={<Main loggedIn={loggedIn} />} />
           <Route
             path="/movies"
-            element={<ProtectedRoute element={Movies} loggedIn={loggedIn} />}
+            element={<ProtectedRoute element={Movies} 
+            loggedIn={loggedIn} />}
           />
           <Route
             path="/saved-movies"
             element={
-              <ProtectedRoute element={SavedMovies} loggedIn={loggedIn} />
+              <ProtectedRoute element={SavedMovies} 
+              loggedIn={loggedIn} />
             }
           />
           <Route

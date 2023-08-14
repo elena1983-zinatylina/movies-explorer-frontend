@@ -15,6 +15,7 @@ function MoviesCard({ movie, handleSavedMovie }) {
       ? ""
       : `${movie.duration % MOVIE_HOUR_IN_MINUTES} м`;
   const movieDuration = hourDuration + minuteDuration;
+  
   const savedMovie = () => handleSavedMovie(movie);
 
   return (
