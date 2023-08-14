@@ -78,6 +78,10 @@ function App() {
         if (err === "Ошибка: 500") {
           setRegisterError("На сервере произошла ошибка");
         }
+        setLoggedIn(false);
+        if (err === 400) {
+          setRegisterError("Некорректнo введены данные");
+        }
       });
   }
 
@@ -91,7 +95,7 @@ function App() {
       })
       .catch((err) => {
         setLoggedIn(false);
-        if (err === "Ошибка: 401") {
+        if (err === 400 || err ===  401) {
           setLoginError("Вы ввели неправильный логин или пароль");
         }
         if (err === "Ошибка: 500") {
@@ -167,6 +171,7 @@ function App() {
               <Register
                 onRegister={handleRegister}
                 registerError={registerError}
+                setRegisterError={setRegisterError}
               />
             }
           />
