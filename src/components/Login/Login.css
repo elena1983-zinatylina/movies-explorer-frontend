@@ -104,7 +104,7 @@
     margin: 0;
     padding: 0;
     margin-bottom: 16px;
-    margin-top: 179px;
+    margin-top: 10px;
     border: none;
     max-width: 396px;
     border-radius: 3px;
@@ -190,7 +190,7 @@
       margin-bottom: 80px;
     }
     .login-form__button {
-      margin-top: 267px;
+      margin-top: 10px;
       margin-bottom: 14px;
       max-width: 260px;
       padding: 15px 113px;
