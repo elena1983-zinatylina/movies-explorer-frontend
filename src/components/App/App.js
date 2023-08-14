@@ -82,7 +82,7 @@ function App() {
           setRegisterError("На сервере произошла ошибка");
         }
         setLoggedIn(false);
-        if (err === 400) {
+        if (err === "Ошибка: 400") {
           setRegisterError("Некорректнo введены данные");
         }
       });

@@ -121,8 +121,8 @@ function Movies({ loggedIn }) {
     }
   };
 
-   /**удалить, сохранить фильм*/
-   const handleSavedMovie = (movie) => {
+  /**удалить, сохранить фильм*/
+  const handleSavedMovie = (movie) => {
     if (movie.saved) {
       console.log("movie.saved", movie.saved);
       deleteMovie(movie._id)
