@@ -110,6 +110,7 @@ function SavedMovies({ loggedIn }) {
           loadingStatus={statusPreloader}
         />
       </main>
+      
       <Footer />
     </>
   );

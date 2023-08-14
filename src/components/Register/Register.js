@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Register.css';
-//import { registerUser } from '../../utils/apiAuth';
 import Logo from '../../images/logo.svg';
 
 function Register({ onRegister, registerError, setRegisterError }) {

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Logo from '../../images/logo.svg';
 import { Link } from 'react-router-dom';
 import './Login.css';
-//import { authorizeUser } from '../../utils/apiAuth';
 
 function Login({ onLogin, loginError, setLoginError }) {
   /**Переменные состояния полей почты и пароля*/
@@ -23,6 +22,7 @@ function Login({ onLogin, loginError, setLoginError }) {
   function handleChangeEmail(e) {
     setEmail(e.target.value);
     setMessageStatus('');
+    setLoginError('');
     const re = /^([\w]+@([\w-]+\.)+[\w-]{2,4})?$/;
 
     if (e.target.value.length === 0) {

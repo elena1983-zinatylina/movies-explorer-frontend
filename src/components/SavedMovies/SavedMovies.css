@@ -3,3 +3,8 @@
     width: 100%;
     margin: 0 auto;
   }
+
+  .moviescardlist__text {
+    color: #EE3465;
+    text-align: center;
+  }
