@@ -103,7 +103,7 @@
   align-self: flex-start;
 }
 
-.authorization-form__button {
+.authorization-form__btn {
   margin: 0;
   padding: 0;
   color: #FFFFFF;
@@ -119,6 +119,12 @@
   line-height: normal;
   padding: 14px 125px;
   cursor: pointer;
+}
+
+.authorization-form__btn_disabled {
+  cursor: default;
+  background-color: #8B8B8B;
+  color: #303030;
 }
 
 .authorization-form__button:hover {
