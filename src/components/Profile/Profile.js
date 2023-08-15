@@ -13,7 +13,7 @@ function Profile(props) {
 
   const [name, setName] = useState(currentUser.name);
   const [email, setEmail] = useState(currentUser.email);
-
+  const [isSuccessfully, setIsSuccessfully] = useState(false)
   const [nameError, setNameError] = useState('');
   const [emailError, setEmailError] = useState('');
 
@@ -79,6 +79,10 @@ function Profile(props) {
     setInitChange(false);
   }
 
+  function handleSave() {
+    setIsSuccessfully((state) => !state);
+ }
+
   return (
     <>
       <Header loggedIn={loggedIn} />
@@ -118,10 +122,11 @@ function Profile(props) {
               />
             </div>
             <span className='profile__error'>{emailError}</span>
-            <span className='profile__error'>
+            {emailError?.email && <span className="profile__input-error">{emailError}</span>}
+        <span className='profile__error-status'>
               {profileMessage}
-            </span>
-          </fieldset>
+            </span> 
+             </fieldset> 
           <div className='profile__btns'>
             {initChange ? (
               <button
