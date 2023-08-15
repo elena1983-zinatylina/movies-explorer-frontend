@@ -15,10 +15,6 @@ function SavedMovies({ loggedIn }) {
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
 
-  useEffect(() => {
-    localStorage.setItem("local-movies", JSON.stringify(movies));
-  }, [movies]);
-
   // Фильтр фильмов
   const filterMovies = (search) => {
     setShortMovieFilterOn(search.shortMovie);

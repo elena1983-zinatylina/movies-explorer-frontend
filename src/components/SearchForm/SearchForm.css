@@ -93,7 +93,7 @@
 
 .seachform__checkbox+.seachform__label::before {
   content: "";
-  background-image: url("../../images/smalltumbnotactiv.svg");
+  background-image: url("../../images/smalltumb.svg");
   display: inline-block;
   width: 36px;
   height: 20px;
@@ -110,7 +110,7 @@
 .seachform__checkbox:checked+.seachform__label::before {
   width: 36px;
   height: 20px;
-  background-image: url("../../images/smalltumb.svg");
+  background-image: url("../../images/smalltumboffnotactiv.svg");
 }
 
 @media screen and (max-width:2200px) {
