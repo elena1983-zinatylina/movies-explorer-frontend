@@ -14,5 +14,4 @@ function Header({ loggedIn }) {
     </header>
   );
 }
-
 export default Header;

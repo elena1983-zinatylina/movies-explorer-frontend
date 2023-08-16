@@ -1,25 +1,104 @@
-import React from 'react';
-import './SearchForm.css';
+import React, { useState, useRef, useEffect } from "react";
+import "./SearchForm.css";
 import Find from "../../images/find.svg";
 import Iconfind from "../../images/iconfind.svg";
 
-function SearchForm() {
+function SearchForm({ filterMovies, required = true, page }) {
+  /**переменная состояния кнопки поиска*/
+  const [isDisabledButton, setIsDisabledButton] = useState(true);
+  /**переменная состояния ошибки*/
+  const [error, setError] = useState({ name: "", shortMovie: "" });
+  /*Переменная состония поисковой строки*/
+  const [value, setValue] = useState({ name: "", shortMovie: false });
+
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    const searchMovies = JSON.parse(localStorage.getItem("search-movies"));
+    if (searchMovies) {
+      setValue(searchMovies);
+      filterMovies(searchMovies);
+    }
+    if (page === "saved-movies") {
+      filterMovies({ name: "", shortMovie: false });
+      setValue({ name: "", shortMovie: false });
+    }
+  }, []);
+
+  const handleInputChange = (evt) => {
+    const { name, value: inputValue, validationMessage } = evt.target;
+
+    const updatedValue = {
+      ...value,
+      [name]: inputValue,
+    };
+    if (page === "movies") {
+      localStorage.setItem("search-movies", JSON.stringify(updatedValue));
+    }
+    setValue(updatedValue);
+    setError((state) => ({ ...state, [name]: validationMessage }));
+    setIsDisabledButton(!formRef.current.checkValidity());
+  };
+
+  const handleCheckbox = (evt) => {
+    const { name, checked } = evt.target;
+    const updatedValue = { ...value, [name]: checked };
+
+    if (page === "movies") {
+      localStorage.setItem("search-movies", JSON.stringify(updatedValue));
+    }
+    setValue(updatedValue);
+    filterMovies(updatedValue);
+  };
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    filterMovies(value);
+  };
+
   return (
-    <section className='seachform'>
-      <form className='seachform__input-container'>
-      <img className="seachform__blackbtn button"
+    <section className="seachform">
+      <form
+     
+        className="seachform__input-container"
+        onSubmit={handleSubmit}
+        ref={formRef}
+        noValidate
+      >
+         <img className="seachform__blackbtn button"
                         src={Iconfind}
                         alt='знак поиск темный'></img>
-        <input className='seachform__input' placeholder='Фильм' required></input>
-        <img className="seachform__btn button"
-                        src={Find}
-                        alt='знак поиск'></img>
-     <div className='seachform__checkbox-conteiner'>
-        <input type='checkbox' className='seachform__checkbox' id='seachform__checkbox' value='yes'></input>
-        <label className='seachform__label link' htmlFor='seachform__checkbox'>Короткометражки</label>
-      </div> 
+        <input
+          className="seachform__input"
+          placeholder="Фильм"
+          required={required}
+          onChange={handleInputChange}
+          value={value.name}
+          name="name"
+        ></input>
+         <img  className={`seachform__btn button ${
+            isDisabledButton ? "searchform__btn_disabled" : ""
+          }`}
+          disabled={isDisabledButton}
+          type="submit"
+          onClick={handleSubmit}
+          src={Find}
+          alt='знак поиск'></img>
+   <span className="searchform__span">{error.name}</span>
+      <div className="seachform__checkbox-container">
+        <input
+          type="checkbox"
+          className="seachform__checkbox"
+          id="seachform__checkbox"
+          name="shortMovie"
+          onChange={handleCheckbox}
+          checked={value.shortMovie}
+        ></input>
+        <label className="seachform__label link" htmlFor="seachform__checkbox">
+          Короткометражки
+        </label>
+      </div>
       </form>
-      
     </section>
   );
 }

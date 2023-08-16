@@ -19,7 +19,7 @@ function Portfolio() {
         </li>
         <li className="portfolio__links-item">
           <a
-            href="https://github.com/elena1983-zinatylina/russian-travel"
+            href="https://elena1983-zinatylina.github.io/russian-travel/"
             className="portfolio__link link"
             target="_blank"
             rel="noreferrer"
@@ -30,7 +30,7 @@ function Portfolio() {
         </li>
       <li className="portfolio__links-item">
         <a
-            href="https://zee.domainname.studen.nomoreparties.sbs/"
+            href="https://github.com/elena1983-zinatylina/react-mesto-api-full-gha"
             className="portfolio__link link"
             target="_blank"
             rel="noreferrer"
