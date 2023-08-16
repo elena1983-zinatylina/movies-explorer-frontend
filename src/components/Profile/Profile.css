@@ -133,14 +133,14 @@
 
   .profile__btn_submit_disabled {
     cursor: default;
-    background-color: #8B8B8B;
-    color: #303030;
+    background-color: #303030;
   
   }
   .profile__btn_submit_disabled:hover {
     transition: none;
     opacity: 1;
     cursor: default;
+    background-color: #8B8B8B;
   }
   
   .profile__btn_exit {

@@ -21,7 +21,7 @@ import {
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(true);
-
+  const [message, setMessage] = useState('');
   const [registerError, setRegisterError] = useState(true);
   const [loginError, setLoginError] = useState(true);
   const [profileMessage, setProfileMessage] = useState(true);
@@ -97,7 +97,7 @@ function App() {
         setLoggedIn(true);
       })
       .catch((err) => {
-        setLoggedIn(false);
+        
         if (err === "Ошибка: 400" || err ===  "Ошибка: 401") {
           setLoginError("Вы ввели неправильный логин или пароль");
         }
@@ -159,6 +159,7 @@ function App() {
                 loggedIn={loggedIn}
                 onUpdateUser={handleUpdateUser}
                 logOut={logOut}
+                message={ message }
                 profileMessage={profileMessage}
                 setCurrentUser={setCurrentUser}
               />

@@ -70,6 +70,7 @@ function Login({ onLogin, loginError, setLoginError }) {
   /**Функция сохранения формы*/
   function handleSubmit(e) {
     e.preventDefault();
+    setFormValid(false);
     onLogin({ email, password });
   }
 
