@@ -3,7 +3,7 @@ import "./MoviesCardList.css";
 import Preloader from "../Preloader/Preloader";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ movies, searchRequest,  handleSavedMovie,
+function MoviesCardList({ movies, searchRequest,  handleSavedMovie, message,
   statusPreloader }) {
   return (
     <section className="moviescardlist">
