@@ -121,6 +121,9 @@ function App() {
         } else {
           setProfileMessage("При обновлении профиля произошла ошибка");
         }
+      })
+      .finally(() => {
+        setTimeout(() => setProfileMessage(''), 2000);
       });
   }
 
